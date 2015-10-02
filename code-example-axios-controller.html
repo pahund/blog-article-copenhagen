@@ -7,17 +7,36 @@
         <meta name="description" content="Blog Article Copenhagen">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/styles/default.min.css">
+        <link rel="stylesheet" href="css/code-example.css">
     </head>
     <body>
         <pre><code class="javascript">
 router.get("/", (req, res) => {
-    const model = home(req, res),
-        advertising = new Advertising(req, res);
+
+    // create a model, to be passed to the view
+    const model = home(req, res);
+
+    // instantiate a new client of type Advertising
+    // to access the advertising service
+    const advertising = new Advertising(req, res);
+
+    // fetch JSON data from service (asynchronous)
     advertising.get()
+
+        // update the model with the advertising data
         .then(withArgs(model)(advertising.updateModel))
+
+        // render the view, passing the model
         .then(withArgs(res, model)(render))
+
+        // if any step of the chained then methods above fails...
         .catch(e => {
+
+            // log an error
             advertising.error(e);
+
+            // render the view with original model
+            // (no advertising data)
             render(res, model);
         });
 });
