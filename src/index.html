@@ -49,7 +49,7 @@
 
         <p>Promises are easier to grasp: you create a Promise that is resolved or rejected after the async magic has happened (in this case, after JSON data has been loaded from the advertising service – or not). Then you create a chain of things that happen afterwards, using the <a href="https://developer.mozilla.org/en-US/docs/Mozilla/JavaScript_code_modules/Promise.jsm/Promise#then%28%29">then method</a>. To handle errors, you add a <a href="https://developer.mozilla.org/en-US/docs/Mozilla/JavaScript_code_modules/Promise.jsm/Promise#catch%28%29">catch method</a> to the chain.
 
-        Our controller code that uses a client component for accessing the advertising service looks like this:
+        <p>Our controller code that uses a client component for accessing the advertising service looks like this:</p>
 
         bc(lang-javascript). router.get("/", (req, res) => {
         const model = home(req, res),
