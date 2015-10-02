@@ -94,8 +94,21 @@ body {
 }
 
 .placeholder {
-    background-color: #cccccc;
-    padding: 10px;
+    background-color: lime;
+    padding: 5px 10px;
+    min-height: 70px;
+    border-radius: 10px;
+    font-size: 0.8em;
+    margin: 0 100px;
+}
+
+.note-to-self {
+    background-color: gold;
+    padding: 5px 10px;
+    min-height: 70px;
+    border-radius: 10px;
+    font-size: 0.8em;
+    margin: 0 100px;
 }
 
 .autoreload {
@@ -107,8 +120,6 @@ body {
     border-radius: 10px;
     padding: 5px 10px;
     font-size: 0.8em;
-
-
 }
 
 
