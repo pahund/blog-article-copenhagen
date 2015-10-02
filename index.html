@@ -41,7 +41,7 @@
 
 <p>It was not hard to convince the Powers That Be<sup>TM</sup> that we should go for <a href="https://nodejs.org/">Node.js</a>, although it was still fairly new technology for us.</p>
 
-<p>At the time we started planning our team included three JavaScript experts (including myself) and one Java expert.</p>
+<p>At the time we started planning our team included four JavaScript experts (including myself) and two Java experts.</p>
 
 <p>Our system architecture has evolved from monilithic to service-oriented in the last year or so. The home page is pretty simple, a thin layer between a handful of service APIs and the client-side code. Node.js is really good at integrating services and passing data through to the presentation layer, so it was an obvious choice.</p>
 
@@ -71,7 +71,7 @@
 
 <div class="placeholder">Babel, frontend and backend</div>
 
-<h3>Example: Promise-driven Service Integration With Axios</h3>
+<h3>Example: Promise-driven Service Integration</h3>
 
 <p>As I've mentioned before, the Copenhagen web app is basically a backend layer between the client and a handful of microservices. How to go about integrating those services? The requests to the services happen asynchronously, which is always fun to implement and the default way Node.js handles things.</p>
 
@@ -88,17 +88,11 @@
 
 <p>Our controller code that uses a client component for accessing the advertising service looks like this:</p>
 
-<iframe src="http://pahund.github.io/blog-article-copenhagen/code-example-axios-controller.html" frameBorder="0"  width="100%" height="220" scrolling="no" seamless></iframe>
+<iframe src="http://pahund.github.io/blog-article-copenhagen/code-example-axios-controller.html" frameBorder="0"  width="100%" height="490" scrolling="no" seamless></iframe>
 
-<p>As you can see, for each request a new client of type <em>Advertising</em> is instantiated that gets the current request and response (line 3).</p>
+<p>As you can see, with promises, it's possible to create a chain of <em>then</em> methods to control the flow of asynchronous code execution. The best part is the possibility to use <em>catch</em> to handle errors that occur at any point in the chain.</p>
 
-<p>It has a <em>get</em> method that does the asynchronous fetching of JSON data from the service (line 4).</p>
-
-<p>The first <em>then</em> that is attached to the Promise returned by <em>get</em> adds the data to the model to be passed to the view (line 5).</p>
-
-<p>The second <em>then</em> method renders the page (line 6).
-
-<p>If things go awry and there is an error or a timeout, the <em>catch</em> method lets the <em>Advertising</em> instance handle the error (basically just logging it) and then also renders the page – without advertising, but yet fully functional (line 7).</p>
+<h3>Oh, noes!</h3>
 
 <p>To send the actual request to the server, the <em>Advertising</em> instance uses <a href="https://github.com/mzabriskie/axios">Axios</a>, a promise-based HTTP client by Matt Zabriskie, which I found quite charming at the time.</p>
 
