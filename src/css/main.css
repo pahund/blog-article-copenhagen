@@ -93,7 +93,10 @@ body {
     margin: 20px 300px 200px;
 }
 
-
+.placeholder {
+    background-color: #cccccc;
+    padding: 10px;
+}
 
 
 

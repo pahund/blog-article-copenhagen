@@ -16,6 +16,77 @@
             In June 2015, we were given a task that every software developer dreams of: throw away all the old stuff and rewrite everything from scratch. The “old stuff” being the public German home page of mobile.de, the main entry point of our platform.
         </p>
 
+        <figure>
+            <div class="placeholder">TODO: pic of old mobile.de homepage</div>
+            <figcaption>This is what the old homepage looked like</figcaption>
+        </figure>
+
+        <p>We have, traditionally been a Java shop since we migrated from a big steaming pile of Perl back in 2007, but engineers at "mobile.de":http://mobile.de are encouraged to explore new technologies and empowered to choose the best tool for the task at hand.</p>
+
+        <p>At the time we started planning our team included three JavaScript experts (including myself) and one Java expert.</p>
+
+        <p>Our system architecture has evolved from monilithic to service-oriented in the last year or so. The home page is pretty simple, a thin layer between a handful of service APIs and the client-side code. "Node.js":https://nodejs.org/ is really good at integrating services and passing data through to the presentation layer, so it was an obvious choice.</p>
+
+        <p>It was not hard to convince the Powers That Be<sup>TM</sup>, as well as the one Java developer on our team, that we should go for Node.js, which is still fairly new technology for us.</p>
+
+
+        <br><br><br>
+        <br><br><br>
+        <br><br><br>
+
+        <h2>Promise-driven Service Integration With Axios</h2>
+
+        <p>As I've mentioned before, the Copenhagen web app is basically a backend layer between the client and a handful of microservices. How to go about integrating those services? The requests to the services happen asynchronously, which is always fun to implement and the default way Node.js handles things.</p>
+
+        <p>For example, we have an advertising service that gives us all the code snippets to be integrated on the page, that display all those colorful ads that our users love so much &#128522;</p>
+
+        <figure>
+            <img src="./data/mediapool/advertising-service_700x422.png" alt="Advertising service" width="700" height="422">
+            <figcaption>Advertising service</figcaption>
+        </figure>
+
+        <p>I don't have to explain about <a href="http://callbackhell.com/">callback hell</a>, the dreaded tangle of nested callback functions. There are much better ways to handle asynchronous calls, and ES6 comes with two of them built in, namely <a href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promises</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator">Generators</a>. I have to admit it, I have not yet quite wrapped my head around Generators, despite reading excellent articles about it like the one by <a href="http://davidwalsh.name/es6-generators">Kyle Simpson</a>.</p>
+
+        <p>Promises are easier to grasp: you create a Promise that is resolved or rejected after the async magic has happened (in this case, after JSON data has been loaded from the advertising service – or not). Then you create a chain of things that happen afterwards, using the <a href="https://developer.mozilla.org/en-US/docs/Mozilla/JavaScript_code_modules/Promise.jsm/Promise#then%28%29">then method</a>. To handle errors, you add a <a href="https://developer.mozilla.org/en-US/docs/Mozilla/JavaScript_code_modules/Promise.jsm/Promise#catch%28%29">catch method</a> to the chain.
+
+        Our controller code that uses a client component for accessing the advertising service looks like this:
+
+        bc(lang-javascript). router.get("/", (req, res) => {
+        const model = home(req, res),
+        advertising = new Advertising(req, res);
+        advertising.get()
+        .then(withArgs(model)(advertising.updateModel))
+        .then(withArgs(res, model)(render))
+        .catch(e => {
+        advertising.error(e);
+        render(res, model);
+        });
+        });
+
+        As you can see, for each request a new client of type _Advertising_ is instantiated that gets the current request and response (line 3).
+
+        It has a _get_ method that does the asynchronous fetching of JSON data from the service (line 4).
+
+        The first _then_ that is attached to the Promise returned by _get_ adds the data to the model to be passed to the view (line 5).
+
+        The second _then_ method renders the page (line 6) .
+
+        If things go awry and there is an error or a timeout, the _catch_ method lets the _Advertising_ instance handle the error (basically just logging it) and then also renders the page – without advertising, but yet fully functional (line 7).
+
+        To send the actual request to the server, the _Advertising_ instance uses "Axios":https://github.com/mzabriskie/axios, a promise-based HTTP client by Matt Zabriskie, which I found quite charming at the time.
+
+        Alas, when it was time to integrate another service that channels traffic between the desktop site and the mobile-optimized site, we hit a road block. Our channeling service expected the user agent header of the API request to be the one of the browser accessing the frontend, but Axios always sets the UA to its own, special user agent string.
+
+        It's a known issue that "other developers have also come accross":https://github.com/mzabriskie/axios/issues/69. The author of Axios fixed it, but he hasn't yet (since April 2015) released a new npm module version with the fix. So we are stuck with a _package.json_ file that looks like this:
+
+        bc(lang-json). "dependencies": {
+        "axios": "mzabriskie/axios#db85c7bf3ae19d680f5c16cd85d06c5e11fedc5f"
+        }
+
+        <br><br><br>
+        <br><br><br>
+        <br><br><br>
+
 
         <h2>Monitoring and Logging</h2>
         <p>
