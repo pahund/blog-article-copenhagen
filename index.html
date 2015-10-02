@@ -43,12 +43,14 @@
 
 <p>At the time we started planning our team included four JavaScript experts (including myself) and two Java experts.</p>
 
-<p>Our system architecture has evolved from monilithic to service-oriented in the last year or so. The new home page was to become a pretty simple web application, a thin layer between a handful of service APIs and the client-side code. Node.js is really good at integrating services and passing data through to the presentation layer, so it was an obvious choice.</p>
+<p>Our system architecture has evolved from monolithic to service-oriented in the last year or so. The new home page was to become a pretty simple web application, a thin layer between a handful of service APIs and the client-side code. Node.js is really good at integrating services and passing data through to the presentation layer, so it was an obvious choice.</p>
 
-<figure>
+<p>
     <img src="./data/mediapool/plan-h-architecture_573x517.png" alt="A thin layer" width="573" height="517">
-    <figcaption>A thin layer between services and client</figcaption>
-</figure>
+</p>
+<p>
+    <em>A thin layer between services and client</em>
+</p>
 
 <h2>Our Build System</h2>
 
@@ -77,10 +79,8 @@
 
 <p>For example, we have an advertising service that gives us all the code snippets to be integrated on the page, that display all those colorful ads that our users love so much &#128522;</p>
 
-<figure>
-    <img src="./data/mediapool/advertising-service_700x422.png" alt="Advertising service" width="700" height="422">
-    <figcaption>Advertising service</figcaption>
-</figure>
+<p><img src="./data/mediapool/advertising-service_700x422.png" alt="Advertising service" width="700" height="422"></p>
+<p><em>Advertising service</em></p>
 
 <p>I don't have to explain about <a href="http://callbackhell.com/">callback hell</a>, the dreaded tangle of nested callback functions. There are much better ways to handle asynchronous calls, and ES6 comes with two of them built in, namely <a href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promises</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator">Generators</a>. I have to admit it, I have not yet quite wrapped my head around Generators, despite reading excellent articles about it like the one by <a href="http://davidwalsh.name/es6-generators">Kyle Simpson</a>.</p>
 
@@ -164,37 +164,44 @@
 </div>
 
 <h2>Monitoring and Logging</h2>
-<p>
-    We have roughly 7.29 unique users per month<sup>1</sup>, so the website gets a lot of traffic (about 40 requests per second). If we screw up, there's thousands people left out in the cold. So it's essential the the servers run smoothly – and if things do go south, there must be proper monitoring in place that immediately alerts us and proper logging to quickly help us find out what went wrong. My colleague <a href="http://twitter.com/https://twitter.com/jonykrause">Jonathan Krause</a> will go into detail on this in another blog article coming soon to this station – stay tuned!
-</p>
+<p>We have roughly 7.29 unique users per month<sup>1</sup>, so the website gets a lot of traffic (about 40 requests per second). If we screw up, there's thousands people left out in the cold. So it's essential the the servers run smoothly – and if things do go south, there must be proper monitoring in place that immediately alerts us and proper logging to quickly help us find out what went wrong. My colleague <a href="http://twitter.com/https://twitter.com/jonykrause">Jonathan Krause</a> will go into detail on this in another blog article coming soon to this station – stay tuned!</p>
 
 <h2>Hard Learned Lessons</h2>
 
-<img src="./data/mediapool/cross-stitch-npm-modules_700x326.png" alt="Be careful which npm modules you choose" width="700" height="326">
+<p><img src="./data/mediapool/cross-stitch-npm-modules_700x326.png" alt="Be careful which npm modules you choose" width="700" height="326"></p>
 
-<div class="placeholder"></div>
+<div class="placeholder">
+    todo
+</div>
 
-<img src="./data/mediapool/cross-stitch-early-prod_700x334.png" alt="Run your app in production as early as possible" width="700" height="334">
+<p><img src="./data/mediapool/cross-stitch-early-prod_700x334.png" alt="Run your app in production as early as possible" width="700" height="334"></p>
 
-<div class="placeholder"></div>
+<div class="placeholder">
+    todo
+</div>
 
-<img src="./data/mediapool/cross-stitch-pairing_700x285.png" alt="Code reviews are silver, pair programming is gold" width="700" height="285">
+<p><img src="./data/mediapool/cross-stitch-pairing_700x285.png" alt="Code reviews are silver, pair programming is gold" width="700" height="285"></p>
 
-<div class="placeholder"></div>
+<div class="placeholder">
+    todo
+</div>
 
-<img src="./data/mediapool/cross-stitch-simple_700x341.png" alt="Keep it simple" width="700" height="341">
+<p><img src="./data/mediapool/cross-stitch-simple_700x341.png" alt="Keep it simple" width="700" height="341"></p>
 
-<div class="placeholder"></div>
+<div class="placeholder">
+    todo
+</div>
 
 <h2>Acknowledgements</h2>
+
 <ul>
     <li><a href="https://en.wikipedia.org/wiki/Food_photography#/media/File:Ice_cubes_openphoto.jpg">Ice Cubes</a> photograph by Darren Hester</li>
     <li>Cross stitch headlines made with <a href="https://photofunia.com/">Photofunia</a></li>
 </ul>
+
 <h2>Footnotes</h2>
-<p>
-    <sup>1</sup> AGOF internet facts 05-2015
-</p>
+
+<p><sup>1</sup> AGOF internet facts 05-2015</p>
 
 <!-- ARTICLE END -->
 
