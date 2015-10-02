@@ -23,13 +23,13 @@ function reloadPage() {
     document.location.reload();
 }
 
-(function () {
-    if (wasScrolledDown()) {
-        withTimeout(10)(scrollDown);
-    }
-    window.setInterval(
-        function executeInterval() {
-            saveScrolledDown();
-            reloadPage();
-        } , 1000);
-}());
+//(function () {
+//    if (wasScrolledDown()) {
+//        withTimeout(10)(scrollDown);
+//    }
+//    window.setInterval(
+//        function executeInterval() {
+//            saveScrolledDown();
+//            reloadPage();
+//        } , 1000);
+//}());

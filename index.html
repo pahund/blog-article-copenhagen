@@ -51,17 +51,8 @@
 
         <p>Our controller code that uses a client component for accessing the advertising service looks like this:</p>
 
-        bc(lang-javascript). router.get("/", (req, res) => {
-        const model = home(req, res),
-        advertising = new Advertising(req, res);
-        advertising.get()
-        .then(withArgs(model)(advertising.updateModel))
-        .then(withArgs(res, model)(render))
-        .catch(e => {
-        advertising.error(e);
-        render(res, model);
-        });
-        });
+        <iframe src="http://pahund.github.io/blog-article-copenhagen/code-example-axios-controller.html" frameBorder="0" style="margin: 0; padding: 0"></iframe>
+
 
         As you can see, for each request a new client of type _Advertising_ is instantiated that gets the current request and response (line 3).
 
