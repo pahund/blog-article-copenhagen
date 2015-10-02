@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/main.css">
     </head>
-    <body>
+    <p>
         <div class="autoreload">
             <label for="autoreload">
                 <input type="checkbox" id="autoreload">
@@ -59,26 +59,22 @@
 
         <iframe src="http://pahund.github.io/blog-article-copenhagen/code-example-axios-controller.html" frameBorder="0"  width="100%" height="220"></iframe>
 
+        <p>As you can see, for each request a new client of type <i>Advertising</i> is instantiated that gets the current request and response (line 3).</p>
 
-        As you can see, for each request a new client of type _Advertising_ is instantiated that gets the current request and response (line 3).
+        <p>It has a <i>get</i> method that does the asynchronous fetching of JSON data from the service (line 4).</p>
 
-        It has a _get_ method that does the asynchronous fetching of JSON data from the service (line 4).
+        <p>The first <i>then</i> that is attached to the Promise returned by <i>get</i> adds the data to the model to be passed to the view (line 5).</p>
 
-        The first _then_ that is attached to the Promise returned by _get_ adds the data to the model to be passed to the view (line 5).
+        <p>The second <i>then</i> method renders the page (line 6).
 
-        The second _then_ method renders the page (line 6) .
+        <p>If things go awry and there is an error or a timeout, the <i>catch</i> method lets the <i>Advertising</i> instance handle the error (basically just logging it) and then also renders the page – without advertising, but yet fully functional (line 7).</p>
 
-        If things go awry and there is an error or a timeout, the _catch_ method lets the _Advertising_ instance handle the error (basically just logging it) and then also renders the page – without advertising, but yet fully functional (line 7).
+        <p>To send the actual request to the server, the <i>Advertising</i> instance uses <a href="https://github.com/mzabriskie/axios">Axios</a>, a promise-based HTTP client by Matt Zabriskie, which I found quite charming at the time.</p>
 
-        To send the actual request to the server, the _Advertising_ instance uses "Axios":https://github.com/mzabriskie/axios, a promise-based HTTP client by Matt Zabriskie, which I found quite charming at the time.
+        <p>Alas, when it was time to integrate another service that channels traffic between the desktop site and the mobile-optimized site, we hit a road block. Our channeling service expected the user agent header of the API request to be the one of the browser accessing the frontend, but Axios always sets the UA to its own, special user agent string.</p>
 
-        Alas, when it was time to integrate another service that channels traffic between the desktop site and the mobile-optimized site, we hit a road block. Our channeling service expected the user agent header of the API request to be the one of the browser accessing the frontend, but Axios always sets the UA to its own, special user agent string.
+        It's a known issue that <a href="https://github.com/mzabriskie/axios/issues/69">other developers have also come accross</a>. The author of Axios fixed it, but he hasn't yet (since April 2015) released a new npm module version with the fix. So we are stuck with a <i>package.json</i> file that looks like this:
 
-        It's a known issue that "other developers have also come accross":https://github.com/mzabriskie/axios/issues/69. The author of Axios fixed it, but he hasn't yet (since April 2015) released a new npm module version with the fix. So we are stuck with a _package.json_ file that looks like this:
-
-        bc(lang-json). "dependencies": {
-        "axios": "mzabriskie/axios#db85c7bf3ae19d680f5c16cd85d06c5e11fedc5f"
-        }
 
         <br><br><br>
         <br><br><br>
