@@ -98,6 +98,19 @@ body {
     padding: 10px;
 }
 
+.autoreload {
+    position: fixed;
+    color: white;
+    background-color: hotpink;
+    top: 10px;
+    right: 10px;
+    border-radius: 10px;
+    padding: 5px 10px;
+    font-size: 0.8em;
+
+
+}
+
 
 
 

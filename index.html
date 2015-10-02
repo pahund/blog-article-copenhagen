@@ -9,6 +9,12 @@
         <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
+        <div class="autoreload">
+            <label for="autoreload">
+                <input type="checkbox" id="autoreload">
+                auto reload
+            </label>
+        </div>
         <p>
             Hi, I'm Patrick, software engineer at mobile.de. My team and I work on <a href="http://www.mobile.de">mobile.de</a>, which is Germany's biggest online marketplace for cars and other vehicles.
         </p>
@@ -51,7 +57,7 @@
 
         <p>Our controller code that uses a client component for accessing the advertising service looks like this:</p>
 
-        <iframe src="http://pahund.github.io/blog-article-copenhagen/code-example-axios-controller.html" frameBorder="0" style="margin: 0; padding: 0"></iframe>
+        <iframe src="http://pahund.github.io/blog-article-copenhagen/code-example-axios-controller.html" frameBorder="0"  width="100%" height="220"></iframe>
 
 
         As you can see, for each request a new client of type _Advertising_ is instantiated that gets the current request and response (line 3).
