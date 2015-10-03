@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
+<nav class="navigation">
+    <button type="button" onclick="location.href = './index.html'">part 1</button>
+    <button type="button" onclick="location.href = './part2.html'">part 2</button>
+    <button type="button" onclick="location.href = './part3.html'">part 3</button>
+</nav>
 <div class="autoreload">
     <label for="autoreload">
         <input type="checkbox" id="autoreload">
@@ -55,155 +60,33 @@
 <h2>Our Build System</h2>
 
 <div class="placeholder">
+    make a pic that shows the various parts of the build system
     npm
     Gulp
     webpack
 </div>
 
-<p><iframe width="420" height="315" src="https://www.youtube.com/embed/lmP06OpXyD8" frameborder="0" allowfullscreen></iframe></p>
-
 <p>For further reading on why webpack is awesome, check out <a href="http://www.technology-ebay.de/the-teams/mobile-de/blog/packing-the-web-like-a-boss.html">this blog article</a> that I wrote on the subject.</p>
 
-<h3>Example: mobile.de Boilerplate</h3>
+<h3>Building for Production</h3>
 
 <div class="placeholder">
-    maybe do a screen recording of live editing
-    put a skeleton version of CPH build system in public GitHub
+    todo explain npm dist build
 </div>
 
-<h2>ECMAScript 2015</h2>
-
-<div class="placeholder">Babel, frontend and backend</div>
-
-<h3>Example: Promise-driven Service Integration</h3>
-
-<p>As I've mentioned before, the Copenhagen web app is basically a backend layer between the client and a handful of microservices. How to go about integrating those services? The requests to the services happen asynchronously, which is always fun to implement and the default way Node.js handles things.</p>
-
-<p>For example, we have an advertising service that gives us all the code snippets to be integrated on the page, that display all those colorful ads that our users love so much &#128522;</p>
-
-<p><img src="./data/mediapool/advertising-service_700x422.png" alt="Advertising service" width="700" height="422"></p>
-<p><em>Advertising service</em></p>
-
-<p>I don't have to explain about <a href="http://callbackhell.com/">callback hell</a>, the dreaded tangle of nested callback functions. There are much better ways to handle asynchronous calls, and ES6 comes with two of them built in, namely <a href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promises</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator">Generators</a>. I have to admit it, I have not yet quite wrapped my head around Generators, despite reading excellent articles about it like the one by <a href="http://davidwalsh.name/es6-generators">Kyle Simpson</a>.</p>
-
-<p>Promises are easier to grasp: you create a Promise that is resolved or rejected after the async magic has happened (in this case, after JSON data has been loaded from the advertising service – or not). Then you create a chain of things that happen afterwards, using the <a href="https://developer.mozilla.org/en-US/docs/Mozilla/JavaScript_code_modules/Promise.jsm/Promise#then%28%29">then method</a>. To handle errors, you add a <a href="https://developer.mozilla.org/en-US/docs/Mozilla/JavaScript_code_modules/Promise.jsm/Promise#catch%28%29">catch method</a> to the chain.
-
-<p>Our controller code that uses a client component for accessing the advertising service looks like this:</p>
-
-<iframe src="http://pahund.github.io/blog-article-copenhagen/code-example-axios-controller.html" frameBorder="0"  width="100%" height="490" scrolling="no" seamless></iframe>
-
-<p>As you can see, with promises, it's possible to create a chain of <em>then</em> methods to control the flow of asynchronous code execution. The best part is the possibility to use <em>catch</em> to handle errors that occur at any point in the chain.</p>
-
-<h3>Oh, noes!</h3>
-
-<p>To send the actual request to the server, the <em>Advertising</em> instance uses <a href="https://github.com/mzabriskie/axios">Axios</a>, a promise-based HTTP client by Matt Zabriskie, which I found quite charming at the time.</p>
-
-<p>Alas, when it was time to integrate another service that channels traffic between the desktop site and the mobile-optimized site, we hit a road block. Our channeling service expected the user agent header of the API request to be the one of the browser accessing the frontend, but Axios always sets the UA to its own, special user agent string.</p>
-
-<p>It's a known issue that <a href="https://github.com/mzabriskie/axios/issues/69">other developers have also come accross</a>. The author of Axios fixed it, but he hadn't released a new npm module version with the fix until after the launch of our project. So we were stuck with a <em>package.json</em> file that has an entry like this:</p>
-
-<iframe src="http://pahund.github.io/blog-article-copenhagen/code-example-axios-package-json.html" frameBorder="0"  width="100%" height="100"></iframe>
-
-<h2>Dust Templates</h2>
+<h3>Example: Local Development</h3>
 
 <div class="placeholder">
-    about Dust
+    todo: intro to video
 </div>
 
-<h3>Example: Inlining JavaScript with a Dust Helper</h3>
-
-<div class="placeholder">
-    billboard.dust
-    inline.js
-</div>
-
-<h2>Reusable Layout Components</h2>
-
-<div class="placeholder">
-    “Twitter Bootstrap for mobile.de”
-    Living style guide
-    some explanation about Bower
-    OpenSource-like ecosystem inside our company
-    note about OpenSource – we plan to publish OOS soon
-</div>
-
-<h2>Express Framework</h2>
-
-<div class="placeholder">
-    MVC architecture
-    names of controllers, models and views corresponding
-</div>
-
-<h3>Example: Channeling Middleware</h3>
-
-<div class="placeholder">
-    canneling.js
-</div>
-
-<h2>Automated Tests</h2>
-
-<div class="placeholder">
-    Robot
-    Mocha, Chai and Sinon
-    Problems
-        Freshy
-        Toboggan
-        Async
-        Architecture
-</div>
-
-<h3>Test Coverage</h3>
-
-<div class="placeholder">
-    98% - yay!
-    pic
-</div>
-
-<h3>Example: JS Unit Test With Mocha, Chai and Sinon</h3>
-
-<div class="placeholder">
-    firstRegOptions-test.js
-</div>
-
-<h2>Monitoring and Logging</h2>
-<p>We have roughly 7.29 unique users per month<sup>1</sup>, so the website gets a lot of traffic (about 40 requests per second). If we screw up, there's thousands people left out in the cold. So it's essential the the servers run smoothly – and if things do go south, there must be proper monitoring in place that immediately alerts us and proper logging to quickly help us find out what went wrong. My colleague <a href="http://twitter.com/https://twitter.com/jonykrause">Jonathan Krause</a> will go into detail on this in another blog article coming soon to this station – stay tuned!</p>
-
-<h2>Hard Learned Lessons</h2>
-
-<p><img src="./data/mediapool/cross-stitch-npm-modules_700x326.png" alt="Be careful which npm modules you choose" width="700" height="326"></p>
-
-<div class="placeholder">
-    todo
-</div>
-
-<p><img src="./data/mediapool/cross-stitch-early-prod_700x334.png" alt="Run your app in production as early as possible" width="700" height="334"></p>
-
-<div class="placeholder">
-    todo
-</div>
-
-<p><img src="./data/mediapool/cross-stitch-pairing_700x285.png" alt="Code reviews are silver, pair programming is gold" width="700" height="285"></p>
-
-<div class="placeholder">
-    todo
-</div>
-
-<p><img src="./data/mediapool/cross-stitch-simple_700x341.png" alt="Keep it simple" width="700" height="341"></p>
-
-<div class="placeholder">
-    todo
-</div>
+<p><iframe width="420" height="315" src="https://www.youtube.com/embed/lmP06OpXyD8" frameborder="0" allowfullscreen></iframe></p>
 
 <h2>Acknowledgements</h2>
 
 <ul>
     <li><a href="https://en.wikipedia.org/wiki/Food_photography#/media/File:Ice_cubes_openphoto.jpg">Ice Cubes</a> photograph by Darren Hester</li>
-    <li>Cross stitch headlines made with <a href="https://photofunia.com/">Photofunia</a></li>
 </ul>
-
-<h2>Footnotes</h2>
-
-<p><sup>1</sup> AGOF internet facts 05-2015</p>
 
 <!-- ARTICLE END -->
 

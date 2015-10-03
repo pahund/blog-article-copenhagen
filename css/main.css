@@ -90,7 +90,7 @@ textarea {
 
 body {
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-    margin: 20px 300px 200px;
+    margin: 20px 300px;
 }
 
 .placeholder {
@@ -117,6 +117,17 @@ body {
     background-color: hotpink;
     top: 10px;
     right: 10px;
+    border-radius: 10px;
+    padding: 5px 10px;
+    font-size: 0.8em;
+}
+
+.navigation {
+    position: fixed;
+    color: white;
+    background-color: hotpink;
+    top: 10px;
+    left: 10px;
     border-radius: 10px;
     padding: 5px 10px;
     font-size: 0.8em;
