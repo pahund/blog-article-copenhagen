@@ -53,16 +53,16 @@
 
 <p>We have, traditionally been a Java shop since we migrated from a big steaming pile of Perl back in 2007, but engineers at mobile.de are encouraged to explore new technologies and empowered to choose the best tool for the task at hand.</p>
 
-<p>It was not hard to convince the Powers That Be<sup>TM</sup> that we should go for <a href="https://nodejs.org/">Node.js</a>, although it was still fairly new technology for us.</p>
+<p>It was not hard to convince the Powers That Be<small><sup>TM</sup></small> that we should go for <a href="https://nodejs.org/">Node.js</a>, although it was still fairly new technology for us.</p>
 
-<p>Our system architecture has evolved from monolithic to service-oriented in the last year or so. The new home page was to become a pretty simple web application, a thin layer between a handful of service APIs and the client-side code. Node.js is really good at integrating services and passing data through to the presentation layer, so it was an obvious choice.</p>
+<p>Our system architecture has evolved from monolithic to service-oriented in the last years. The new home page was to become a pretty simple web application, a thin layer between a handful of service APIs and the client-side code. Node.js is great at integrating services and passing data through to the presentation layer, so it was an obvious choice.</p>
 
 <p><img src="./data/mediapool/plan-h-architecture_537x517.png" alt="A thin layer" width="537" height="517"></p>
 <p><em>A thin layer between services and client</em></p>
 
-<p>We had a fairly tough deadline to meet. At the time we started planning our team included four JavaScript experts (including myself) and two Java experts, one of whom was on vacation until well into the project. After some experimentation with PayPal's <a href="https://github.com/krakenjs/kraken-js">kraken.js</a> framework, I was confident that we could pull this off with much less deadline risk than using the “traditional” Spring/Java stack (more on why using Kraken turned out to be not such a great idea later).</p>
+<p>We had a fairly tough deadline to meet. At the time we started planning our team included four JavaScript experts (including myself) and two Java experts, one of whom was on vacation until well into the project. After some experimentation with PayPal's <a href="https://github.com/krakenjs/kraken-js">kraken.js</a> framework, I was confident that we could pull this off with much less deadline risk than using the “traditional” Spring/Java stack (more on why using Kraken turned out to be <em>not</em> such a great idea later).</p>
 
-<p>For further reading on why JavaScript is a good choice for backend and frontend alike, here is a link to a great article by Eric Elliot, <a href="https://medium.com/javascript-scene/how-to-build-a-high-velocity-development-team-4b2360d34021">How to Build a High Velocity Development Team</a>, section “Why Language Matters”.</p>
+<p>For further reading on why JavaScript is a good choice for backend and frontend alike, here is a link to a great article by Eric Elliot, <a href="https://medium.com/javascript-scene/how-to-build-a-high-velocity-development-team-4b2360d34021#40c2">How to Build a High Velocity Development Team</a>, section “Why Language Matters”.</p>
 
 <h2>Setting Up the Build System</h2>
 
@@ -74,13 +74,13 @@
 
 <p>When I evaluated PayPal's <a href="https://github.com/krakenjs/kraken-js">kraken.js</a> framework early in 2015, I was euphoric about it: you run a <a href="http://yeoman.io/">Yeoman</a> generator, and it sets up a basic skeleton app with <a href="http://expressjs.com/">Express</a>, <a href="http://www.dustjs.com/">Dust.js</a> templates, a <a href="http://gruntjs.com/">Grunt</a> build system, <a href="http://bower.io/">Bower</a> package manager integration and a dev server that allows live reloading – everything we needed, ready to use within seconds. Heaven!</p>
 
-<p>Unfortuanately, when I set out to use Kraken in earnest, it turned out that the project had not been updated since April 2015 (<a href="https://github.com/krakenjs/kraken-js/releases/tag/v2.0.0-rc.1">v2.0.0-rc1</a>). A new 2.x version has not been released ever since (at the time I'm writing this, September 2015).</p>
+<p>Unfortunately, when I set out to use Kraken in earnest, it turned out that the project had not been updated since April 2015 (<a href="https://github.com/krakenjs/kraken-js/releases/tag/v2.0.0-rc.1">v2.0.0-rc1</a>). A new 2.x version has not been released ever since (at the time I'm writing this, October 2015).</p>
 
 <p>So I had a choice to make:</p>
 <ul>
     <li>use the old but stable 1.x version of Kraken</li>
     <li>use the newer, but unstable RC version of Kraken 2</li>
-    <li>don't use Kraken framework, but only single modules of Kraken, and set up the whole build system yourself</li>
+    <li>don't use Kraken framework as a whole, only single Kraken modules; set up the whole build system myself</li>
 </ul>
 
 <p>My engineer's heart that wants to use the latest and greatest and try out cool and new stuff got the better of me and defeated the voice of reason (also known as “The You-Have-a-Deadline-Dude”) – so of course, I went for the latter option.</p>
@@ -95,7 +95,7 @@
 <ul>
     <li>I did not want to risk being stuck with outdated software and be at the mercy of our (highly respected!) colleagues at PayPal to eventually provide an update that we can migrate to with reasonable effort</li>
     <li>I wanted to use the latest version of JavaScript, <a href="http://www.ecma-international.org/ecma-262/6.0/">ECMAScript 2015</a> (ES6) for backend and frontend, which would take a lot of customization to bake into the Kraken scaffold</li>
-    <li>Likewise, I wanted to use <a href="http://webpack.github.io/">webpack</a> for optimizing and bundling client-side resources; webpack had proven indispensible at my previous project, the relaunch of the search results page of mobile.de</li>
+    <li>Likewise, I wanted to use <a href="http://webpack.github.io/">webpack</a> for optimizing and bundling client-side resources; webpack had proven indispensable at my previous project, the relaunch of the search results page of mobile.de</li>
 </ul>
 
 <h3>webpack – Great for Frontend, Also Backend?</h3>
@@ -139,8 +139,8 @@
 <p>That's it for now – I have lots more to talk about, look forward to the next two parts of this series:</p>
 
 <ul>
-    <li>Part II: Using ES6 – Dust templates – MVC architecture with Express – unit tests with Mocha, Chai and Sinon</li>
-    <li>Part III: Hard learned lessons building a Node.js application from scratch in three monthts</li>
+    <li>Part II: Practical application of ES6 features – working with Dust templates – MVC architecture with Express – unit tests with Mocha, Chai and Sinon</li>
+    <li>Part III: Hard learned lessons building a Node.js application from scratch in three months</li>
 </ul>
 
 <h2>Acknowledgements</h2>
