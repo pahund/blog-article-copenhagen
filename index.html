@@ -32,10 +32,10 @@
     In June 2015, we were given a task that every software developer dreams of: throw away all the old stuff and rewrite everything from scratch. The “old stuff” being the public German home page of mobile.de, the main entry point of our platform.
 </p>
 
-<h3>mobile.de before...</h3>
+<h3>mobile.de before&hellip;</h3>
 <p><a href="./data/mediapool/mobile.de-before-relaunch_825x710.png" target="_blank"><img src="./data/mediapool/mobile.de-before-relaunch_557x478.png" alt="mobile.de before the relaunch" width="557" height="478"></a></p>
 
-<h3>...and after the relaunch</h3>
+<h3>&hellip;and after the relaunch</h3>
 <p><a href="./data/mediapool/mobile.de-after-relaunch_1013x755.png" target="_blank"><img src="./data/mediapool/mobile.de-after-relaunch_700x522.png" alt="mobile.de after the relaunch" width="700" height="522"></a></p>
 
 <h2>Why Node.js?</h2>
@@ -56,6 +56,8 @@
 <h2>Setting Up the Build System</h2>
 
 <h3>The Trouble With Kraken</h3>
+
+<img src="./data/mediapool/kraken-logo_136x136.svg" alt="Engineering Man vs. Deadline Dude" width="136" height="136" align="right">
 
 <p>The first phase of our project was to set up the basic scaffold of the application, including a build system that allows us to smoothly and quickly work on the software running in our local development environments.</p>
 
@@ -85,9 +87,9 @@
     <li>Likewise, I wanted to use <a href="http://webpack.github.io/">webpack</a> for optimizing and bundling client-side resources; webpack had proven indispensible at my previous project, the relaunch of the search results page of mobile.de</li>
 </ul>
 
-<h3>webpack</h3>
+<h3>webpack – Great for Frontend, Also Backend?</h3>
 
-<p><img src="./data/mediapool/webpack-logo_300x336.png" alt="webpack logo" width="300" height="336"></p>
+<img src="./data/mediapool/webpack-logo_150x168.png" alt="webpack logo" width="150" height="168" align="right">
 
 <p>During my research, I came across an interesting series of blog articles by Mozilla developer James Long, <a href="http://jlongster.com/Backend-Apps-with-Webpack--Part-I">Backend Apps with webpack</a>.</p>
 
@@ -99,9 +101,9 @@
 
 <p>For further reading on why webpack is awesome (for client-side resources), check out <a href="http://www.technology-ebay.de/the-teams/mobile-de/blog/packing-the-web-like-a-boss.html">this blog article</a> that I wrote on the subject.</p>
 
-<h3>Gulp</h3>
+<h3>Streaming Builds With Gulp</h3>
 
-<p><img src="./data/mediapool/gulp-logo_600x138.png" alt="Gulp logo" width="600" height="138"></p>
+<img src="./data/mediapool/gulp-logo_120x268.png" alt="Gulp logo" width="120" height="268" align="right">
 
 <p>We had previously used <a href="http://gruntjs.com/">Grunt</a> as frontend build tool in almost all our projects. Gulp is an interesting alternative, as it uses the streaming API of Node.js, allowing for some fascinating code solutions.</p>
 
@@ -111,15 +113,24 @@
 
 <h3>Example: Local Development</h3>
 
-<p>To show you how nice it is to work on a node.js with a good build system, I've created a short demo video.</p>
+<p>To show you how nice it is to work on a node.js project with a good build system, I've created a short demo video.</p>
 
-<p>I especially like the live reloading provided by the webpack dev server that allows me to make changes to <a href="http://lesscss.org/">Less</a> stylesheets and client-side JavaScript without having to hit the reload button of my browser all the time.</p>
+<p><iframe width="420" height="315" src="https://www.youtube.com/embed/lmP06OpXyD8" frameborder="0" allowfullscreen></iframe></p>
+
+<p>I especially like the live reloading provided by the <a href="https://webpack.github.io/docs/webpack-dev-server.html">webpack dev server</a> that allows me to make changes to <a href="http://lesscss.org/">Less</a> stylesheets and client-side JavaScript without having to hit the reload button of my browser all the time.</p>
 
 <p>Thanks to <a href="http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/">sourcemaps</a>, I can inspect my CSS and JavaScript code in the browser, which shows me the original ES6 and Less source files.</p>
 
 <p>When I work on the backend, I also have very little turnaround times – <a href="https://www.npmjs.com/package/nodemon">nodemon</a> detects changes of the backend ES6 code and restarts the application for me, which only takes a few milliseconds. Compared to working on a Java application, where recompiling and restarting takes a perceived eternity, this is incredible.</p>
 
-<p><iframe width="420" height="315" src="https://www.youtube.com/embed/lmP06OpXyD8" frameborder="0" allowfullscreen></iframe></p>
+<h3>To Be Continued&hellip;</h3>
+
+<p>That's it for now – I have lots more to talk about, look forward to the next two parts of this series:</p>
+
+<ul>
+    <li>Part II: Using ES6 – Dust templates – MVC architecture with Express – unit tests with Mocha, Chai and Sinon</li>
+    <li>Part III: Hard learned lessons building a Node.js application from scratch in three monthts</li>
+</ul>
 
 <h2>Acknowledgements</h2>
 
