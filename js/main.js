@@ -20,7 +20,7 @@
     "use strict";
 
     var autoReloadCheckbox = document.getElementById("autoreload"),
-        reloadInterval = 1000;
+        reloadInterval = 100;
 
     function jsonp(src, options) {
         var callbackName = options.callbackName || "handleJsonP",
