@@ -133,6 +133,14 @@ body {
     font-size: 0.8em;
 }
 
+.navigation a,
+.navigation a:hover,
+.navigation a:active,
+.navigation a:visited {
+    color: white;
+}
+
+
 
 
 
