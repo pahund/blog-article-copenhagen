@@ -1,0 +1,23 @@
+{
+  "name": "blog-article-copenhagen",
+  "version": "1.0.0",
+  "description": "My blog article about the Copenhagen project",
+  "main": "index.js",
+  "scripts": {
+    "start": "babel-node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pahund/blog-article-copenhagen.git"
+  },
+  "author": "Patrick Hund <pahund@team.mobile.de>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pahund/blog-article-copenhagen/issues"
+  },
+  "homepage": "http://pahund.github.io/blog-article-copenhagen",
+  "dependencies": {
+    "watch": "^0.16.0"
+  }
+}

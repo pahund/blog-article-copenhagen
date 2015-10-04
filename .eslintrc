@@ -16,11 +16,6 @@
     ],
     // indent with 4 spaces
     "indent": 2,
-    // exactly one variable declaration per type per function (var) or block (let or const)
-    "one-var": [
-      2,
-      "always"
-    ],
     // only use let and const for variables, not var
     "no-var": 2,
     // limit cyclomatic complexity to 10
