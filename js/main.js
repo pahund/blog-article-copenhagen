@@ -9,6 +9,11 @@
  * to the bottom. In this case, the page is scrolled to the bottom after reloading, thus
  * making sure the author does not have to manually scroll down when she adds new text
  * at the end.
+ *
+ * Auto reloading only happens if the page has actually changed. For this to work, you need
+ * to run a Node.js server that watches the file system for changes. The server is pinged
+ * by this script for changes, if the server answers "yes, there is a change", the reload
+ * happens.
  */
 (function (window, document) {
 
@@ -16,6 +21,40 @@
 
     var autoReloadCheckbox = document.getElementById("autoreload"),
         reloadInterval = 1000;
+
+    function jsonp(src, options) {
+        var callbackName = options.callbackName || "handleJsonP",
+            onSuccess = options.onSuccess || function () {},
+            onTimeout = options.onTimeout || function () {},
+            timeout = options.timeout || 1; // sec
+
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.async = true;
+        script.src = src;
+
+        var timeoutTrigger = window.setTimeout(function () {
+            window[callbackName] = function () {};
+            document.getElementsByTagName("head")[0].removeChild(script);
+            onTimeout();
+        }, timeout * 1000);
+
+        window[callbackName] = function (data) {
+            window.clearTimeout(timeoutTrigger);
+            document.getElementsByTagName("head")[0].removeChild(script);
+            onSuccess(data);
+        };
+
+        document.getElementsByTagName("head")[0].appendChild(script);
+    }
+
+    function disableAutoReloadCheckbox() {
+        autoReloadCheckbox.setAttribute("disabled", "disabled");
+    }
+
+    function enableAutoReloadCheckbox() {
+        autoReloadCheckbox.removeAttribute("disabled");
+    }
 
     function isScrolledDown() {
         return (window.innerHeight + window.scrollY) >= document.body.offsetHeight;
@@ -78,8 +117,18 @@
 
     function executeInterval() {
         if (hasAutoReload()) {
-            saveScrolledDown();
-            reloadPage();
+            jsonp("http://localhost:8000", {
+                onSuccess: function (pageHas) {
+                    enableAutoReloadCheckbox();
+                    if (pageHas.changed) {
+                        saveScrolledDown();
+                        reloadPage();
+                    }
+                },
+                onTimeout: function () {
+                    disableAutoReloadCheckbox();
+                }
+            });
         }
     }
 
