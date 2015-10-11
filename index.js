@@ -43,6 +43,7 @@ const server = http.createServer((request, response) => {
     let changed = changedFiles[htmlFileName] || false;
     if (changed) {
         changedFiles[htmlFileName] = false;
+        console.log("changed: " + htmlFileName);
     }
     response.writeHead(200, {
         "Content-Type": "text/plain"
