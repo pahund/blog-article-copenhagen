@@ -5,10 +5,11 @@
  * corresponds to the requests referrer has changed.
  */
 
-import watch from "watch";
-import http from "http";
+"use strict";
 
-const changedFiles = {};
+const watch = require("watch"),
+    http = require("http"),
+    changedFiles = {};
 
 function handleChange(fileName) {
     const htmlFileName = getHtmlFileName(fileName);

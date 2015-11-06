@@ -7,13 +7,16 @@ My blog article about the Copenhagen project.
 While working on the blog article, you can make the page automatically
 reload in the browser when you save changes to the HTML code of the page.
 
-To make this work:
+You need to have [Node.js](https://nodejs.org/) installed, at least version 4.
+
+To install the auto reloader:
 
     npm install
+    
+To start it:
+    
     npm run
     
-You need to have Babel installed as a global module.
-
 ## ISC License
 
 Copyright &copy; 2015 mobile.de GmbH
