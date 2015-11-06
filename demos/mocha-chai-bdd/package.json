@@ -1,0 +1,15 @@
+{
+  "name": "mocha-chai-bdd",
+  "version": "1.0.0",
+  "description": "Code example for using Mocha and Chai",
+  "main": "programmer.js",
+  "scripts": {
+    "test": "mocha test.js"
+  },
+  "author": "Patrick Hund <pahund@team.mobile.de>",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^3.4.0",
+    "mocha": "^2.3.3"
+  }
+}

@@ -32,42 +32,99 @@
 
 <article>
 
-<!-- TITLE -->
+    <!-- TITLE -->
 
-<h1>Node.js and ES6 Instead of Java – A War Story (Part II)</h1>
-<p><small>by <a href="http://twitter.com/wiekatz">Patrick Hund</a></small></p>
+    <h1>Node.js and ES6 Instead of Java – A War Story</h1>
+    <p><small>by <a href="http://twitter.com/wiekatz">Patrick Hund</a></small></p>
 
-<!-- TEASER -->
+    <!-- TEASER -->
+    <h2>Part II: The Joy and Pain of Test Driven Development</h2>
+
+    <img src="./data/mediapool/from-the-trenches_709x255.png" alt="A thin layer" width="709" height="255" align="right">
 
 
-<!-- ARTICLE START -->
+    <p>We created a Node.js web app from scratch within 9 weeks that now serves 10.81 million visitors each month*. We used the latest and greatest incarnation of JavaScript – ECMAScript 2015, a.k.a. ES6 – for the backend and frontend alike. We spent late nights coding in gleeful frenzy, stepped into pitfalls, moaned about WTFs, scaled the dizzy heights of asynchronicity. This is the second part of our story.</p>
 
-<h2>Automated Tests</h2>
+    <p><small>* AGOF Digital Facts 2015-06</small></p>
 
-<div class="placeholder">
-    Robot
-    Mocha, Chai and Sinon
-    Problems
-    Freshy
-    Toboggan
-    Async
-    Architecture
-</div>
+    <p>If you missed part I, read up on it here on the <a href="http://www.technology-ebay.de/the-teams/mobile-de/blog/nodejs-es6-war-story">eBay Technology Blog Europe.</a></p>
 
-<h3>Test Coverage</h3>
+    <!-- ARTICLE START -->
 
-<div class="placeholder">
-    98% - yay!
-    pic
-</div>
+    <h2>What Joy? What Pain?</h2>
 
-<h3>Example: JS Unit Test With Mocha, Chai and Sinon</h3>
+    <p>Hi, I'm Patrick, software engineer. My team and I work for <a href="http://www.mobile.de">mobile.de</a>, which is Germany's biggest online marketplace for cars and other vehicles.</p>
 
-<div class="placeholder">
-    firstRegOptions-test.js
-</div>
+    <p>In the second part of my series, I'll focus on automated tests for the backend.</p>
 
-<!-- ARTICLE END -->
+    <p>When I started with the backend code for our new application, working with Node.js and the <a href="http://expressjs.com/">Express framework</a> was still mostly <i>terra incognita</i> for me. I had written a couple of Grunt tasks and an import script to fetch data from an API, but never a fully fledged webapp, at least not in JavaScript.</p>
+
+    <p>I had written web apps in Java back in the days before I moved from backend to frontend. Building on that experience and looking at the mess the old mobile.de home page web app had become over the years, one thing was crystal clear:</p>
+
+    <p><b>You cannot write maintainable code without proper unit test coverage.</b></p>
+
+    <p>If you have proper test coverage, you can easily refactor your code without having to fear to break something without being aware of it. This has happened to me countless times. I'll make a wild guess and assume it has happened to you, too. &#128522;</p>
+
+    <div class="placeholder">
+        cartoon
+    </div>
+
+    <p>There's a German saying for this: “Mit dem Arsch einreißen was man mit den Händen aufgebaut hat.” (tearing down with your ass what you've built up with your hands)</p>
+
+    <p>Automated tests are the only way I know of to obviate this phenomenon.</p>
+
+    <p>The safety net of good test coverage is even more important in JavaScript than in Java, as JavaScript lacks typ safety, something I'm starting more and more to resent (yeah, I know, there's <a href="http://www.typescriptlang.org/">TypeScript</a>, I haven't gotten around to trying that yet).</p>
+
+    <p>With a good test setup that runs your tests automatically as you write your code, you can concentrate intensely on solving the problem at hand, without being distracted by things like reloading the page in the browser or restarting the server. You can deep dive <a href="http://psygrammer.com/2011/02/10/the-flow-programming-in-ecstasy/">into the zone</a>. To me, this is joy indeed.</p>
+
+    <h3>So What's Not to Like? What's the Pain?</h3>
+
+    <p>Well, on the mobile.de home page project, I spent more time writing tests and stubs and mocks and fixtures and what not than I spent writing the actual production code. It was maddening sometimes to write tests for things like asynchronous calls, promises, timeouts, etc. The urge to just let it slip and not write a test for some module was sometimes overwhelming, especially given the time constraints we had. I'm very proud to say that my team mates and I resisted the temptation.</p>
+
+    <h2>Tasty Mocha</h2>
+
+    <p>
+        I had previously worked with <a href="http://jasmine.github.io/">Jasmine</a>, which is great for testing frontend JavaScript code, especially if you use jQuery, since there is a great lib <a href="https://github.com/velesin/jasmine-jquery">jasmine-jquery</a> that allows you to create HTML fixtures to test jQuery DOM interaction easily.
+    </p>
+    <p>
+        My colleague <a href="http://twitter.com/jonykrause">Jonathan</a> proposed to use <a href="https://mochajs.org/">Mocha</a> instead of Jasmine for testing our Node.js backend code. Since I'm always up for trying out new stuff, naturally, I went for it.
+    </p>
+    <p>
+        Mocha's syntax is very similar to Jasmine's. You formulate your test cases as a series of nested <i>describe</i> function calls with an <i>it</i> function call containing your assertion. Using the assertion library <a href="chaijs.com">Chai</a>, you can write nice readable test code in the style of <a href="https://en.wikipedia.org/wiki/Behavior-driven_development">behavior-driven development</a> (BDD):
+    </p>
+
+    <iframe src="http://pahund.github.io/blog-article-copenhagen/code-example-mocha-chai-bdd" frameBorder="0"  width="100%" height="490" scrolling="no" seamless></iframe>
+
+    <div class="placeholder">
+        Mocha, Chai and Sinon
+        Gulp / Istanbul / Isparta
+        Wallaby
+        Robot
+    </div>
+
+    <h2>Problems</h2>
+
+    <div class="placeholder">
+        Freshy
+        Toboggan
+        Async
+        Architecture
+    </div>
+
+    <h3>Test Coverage</h3>
+
+    <div class="placeholder">
+        98% - yay!
+        pic
+    </div>
+
+    <h3>Example: JS Unit Test With Mocha, Chai and Sinon</h3>
+
+    <div class="placeholder">
+        firstRegOptions-test.js
+    </div>
+
+    <!-- ARTICLE END -->
 
 </article>
 <a name="bottom">&nbsp;</a>

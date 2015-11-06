@@ -21,6 +21,7 @@
   },
   "homepage": "http://pahund.github.io/blog-article-copenhagen",
   "dependencies": {
+    "chalk": "^1.1.1",
     "watch": "^0.16.0"
   }
 }
