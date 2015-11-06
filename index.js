@@ -9,6 +9,7 @@
 
 const watch = require("watch"),
     http = require("http"),
+    chalk = require("chalk"),
     changedFiles = {};
 
 function handleChange(fileName) {
@@ -29,6 +30,31 @@ function getHtmlFileName(string) {
     return htmlFileName.endsWith(".html") ? htmlFileName : undefined;
 }
 
+function pad2(number) {
+    const string = number.toString();
+    return string.length === 1 ? "0" + string : string;
+}
+
+function day(date) {
+    return pad2(date.getDate());
+}
+
+function month(date) {
+    return pad2(date.getMonth() + 1);
+}
+
+function time(date) {
+    return pad2(date.getHours()) + ":" + pad2(date.getMinutes()) + ":" + pad2(date.getSeconds());
+}
+function logTime() {
+    const date = new Date();
+    return chalk.green("[" + date.getFullYear() + "-" + month(date) + "-" + day(date) + " " + time(date) + "]");
+}
+
+function log(message) {
+    console.log(logTime() + " " + message);
+}
+
 watch.createMonitor(process.cwd(), monitor => monitor.on("changed", handleChange));
 
 // Configure our HTTP server to respond with Hello World to all requests.
@@ -44,7 +70,7 @@ const server = http.createServer((request, response) => {
     let changed = changedFiles[htmlFileName] || false;
     if (changed) {
         changedFiles[htmlFileName] = false;
-        console.log("changed: " + htmlFileName);
+        log("changed: " + chalk.yellow(htmlFileName));
     }
     response.writeHead(200, {
         "Content-Type": "text/plain"
