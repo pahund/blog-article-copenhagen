@@ -57,7 +57,7 @@
 
     <p>In the second part of my series, I'll focus on automated tests for the backend.</p>
 
-    <p>When I started with the backend code for our new application, working with Node.js and the <a href="http://expressjs.com/">Express framework</a> was still mostly <i>terra incognita</i> for me. I had written a couple of Grunt tasks and an import script to fetch data from an API, but never a fully fledged webapp, at least not in JavaScript.</p>
+    <p>When I started with the backend code for our new application, working with Node.js and the <a href="http://expressjs.com/">Express framework</a> was still mostly <em>terra incognita</em> for me. I had written a couple of Grunt tasks and an import script to fetch data from an API, but never a fully fledged webapp, at least not in JavaScript.</p>
 
     <p>I had written web apps in Java back in the days before I moved from backend to frontend. Building on that experience and looking at the mess the old mobile.de home page web app had become over the years, one thing was crystal clear:</p>
 
@@ -83,6 +83,11 @@
 
     <h2>Tasty Mocha</h2>
 
+    <div class="placeholder">
+        mocha, sinon, chai logos
+        picture of mocha cup in blog folder
+    </div>
+
     <p>
         I had previously worked with <a href="http://jasmine.github.io/">Jasmine</a>, which is great for testing frontend JavaScript code, especially if you use jQuery, since there is a great lib <a href="https://github.com/velesin/jasmine-jquery">jasmine-jquery</a> that allows you to create HTML fixtures to test jQuery DOM interaction easily.
     </p>
@@ -90,16 +95,30 @@
         My colleague <a href="http://twitter.com/jonykrause">Jonathan</a> proposed to use <a href="https://mochajs.org/">Mocha</a> instead of Jasmine for testing our Node.js backend code. Since I'm always up for trying out new stuff, naturally, I went for it.
     </p>
     <p>
-        Mocha's syntax is very similar to Jasmine's. You formulate your test cases as a series of nested <i>describe</i> function calls with an <i>it</i> function call containing your assertion. Using the assertion library <a href="chaijs.com">Chai</a>, you can write nice readable test code in the style of <a href="https://en.wikipedia.org/wiki/Behavior-driven_development">behavior-driven development</a> (BDD):
+        Mocha's syntax is very similar to Jasmine's. You formulate your test cases as a series of nested <em>describe</em> function calls with an <em>it</em> function call containing your assertion:
     </p>
 
-    <iframe src="http://pahund.github.io/blog-article-copenhagen/code-example-mocha-chai-bdd" frameBorder="0"  width="100%" height="490" scrolling="no" seamless></iframe>
+    <iframe src="http://pahund.github.io/blog-article-copenhagen/code-example-mocha-chai-bdd" frameBorder="0"  width="100%" height="240" scrolling="no" seamless></iframe>
+
+    <p>Using the assertion library <a href="chaijs.com">Chai</a>, you can write nice readable test code in the style of <a href="https://en.wikipedia.org/wiki/Behavior-driven_development">behavior-driven development</a> (BDD): <em>codeQuality.should.equal("awesome")</em></p>
+    <p>
+        The console output of this little example looks like this:
+    </p>
+
+    <p><img src="./data/mediapool/example-mocha-chai-bdd-output_300x184.png" alt="A thin layer" width="300" height="184"></p>
+    <p><small><a href="https://github.com/pahund/blog-article-copenhagen/tree/master/demos/mocha-chai-bdd">(full code example available on GitHub)</a></small></p>
 
     <div class="placeholder">
         Mocha, Chai and Sinon
         Gulp / Istanbul / Isparta
         Wallaby
         Robot
+    </div>
+
+    <h2>Writing Testable Code</h2>
+    <div class="placeholder">
+        example similar to tech talk 29, but not with timers
+        architecture problem, nodejs singletons
     </div>
 
     <h2>Problems</h2>
@@ -111,11 +130,17 @@
         Architecture
     </div>
 
+    <h2>The Horror, the Horror</h2>
+    <div class="placeholder">
+        take extra good care to clean up your fixtures
+        had to disable the whole test suite one day before launch to be able to build on CI system
+    </div>
+
     <h3>Test Coverage</h3>
 
     <div class="placeholder">
-        98% - yay!
-        pic
+        98% - yay! or is it?
+        youtube video
     </div>
 
     <h3>Example: JS Unit Test With Mocha, Chai and Sinon</h3>
