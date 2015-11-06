@@ -4,8 +4,11 @@
   "description": "My blog article about the Copenhagen project",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">=4.0.0"
   },
   "repository": {
     "type": "git",
