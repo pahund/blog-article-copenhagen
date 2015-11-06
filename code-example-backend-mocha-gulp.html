@@ -28,7 +28,9 @@ const conf = config.get(),
 isparta = require("isparta");
 
 function showError(error) {
-    const msg = error.message === "Coverage failed" ? "Code coverage needs to be at least " + conf.coverage + "%" : null;
+    const msg =
+            error.message === "Coverage failed" ?
+            "Code coverage needs to be at least " + conf.coverage + "%" : null;
     gutil.log(gutil.colors.red(msg || error));
     process.exit(1); // eslint-disable-line no-process-exit
 }
