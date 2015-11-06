@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Blog Article Copenhagen</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="author" content="Patrick Hund">
     <meta name="description" content="Blog Article Copenhagen">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/main.css">
@@ -12,7 +14,8 @@
 <nav class="navigation">
     <a href="./index.html">part 1</a> |
     <a href="./part2.html">part 2</a> |
-    <a href="./part3.html">part 3</a><br>
+    <a href="./part3.html">part 3</a> |
+    <a href="./part4.html">part 4</a><br>
     <a href="#">top</a> |
     <a href="#bottom">bottom</a>
 </nav>
@@ -23,24 +26,30 @@
     </label>
 </div>
 
-<!-- TEASER -->
+<div class="status">
+    &#128077; Published on 6th Oct 2015<br>
+    <a href="http://www.technology-ebay.de/the-teams/mobile-de/blog/nodejs-es6-war-story">http://www.technology-ebay.de/the-teams/mobile-de/blog/nodejs-es6-war-story</a>
+</div>
+
+<article>
+
+<!-- TITLE -->
 
 <h1>Node.js and ES6 Instead of Java – A War Story</h1>
 <p><small>by <a href="http://twitter.com/wiekatz">Patrick Hund</a></small></p>
 
-<p>We created a Node.js web app from scratch within 9 weeks that now serves 7.29 million visitors each month*. We used the latest and greatest incarnation of JavaScript – ECMAScript 2015, a.k.a. ES6 – for the backend and frontend alike. We spent late nights coding in gleeful frenzy, stepped into pitfalls, moaned about WTFs, scaled the dizzy heights of asynchronicity. This is our story.</p>
+<!-- TEASER -->
 
-<p><img src="./data/mediapool/from-the-trenches_709x255.png" alt="A thin layer" width="709" height="255"></p>
-<p><small>* AGOF internet facts 2015-05</small></p>
+<img src="./data/mediapool/war-story-grandpa_280x440.png" alt="A thin layer" width="280" height="440" align="right">
+
+<p>We created a Node.js web app from scratch within 9 weeks that now serves 10.81 million visitors each month*. We used the latest and greatest incarnation of JavaScript – ECMAScript 2015, a.k.a. ES6 – for the backend and frontend alike. We spent late nights coding in gleeful frenzy, stepped into pitfalls, moaned about WTFs, scaled the dizzy heights of asynchronicity. This is our story.</p>
+
+<p><small>* AGOF Digital Facts 2015-06</small></p>
 
 <!-- ARTICLE START -->
 
-<p>
-    Hi, I'm Patrick, software engineer. My team and I work for <a href="http://www.mobile.de">mobile.de</a>, which is Germany's biggest online marketplace for cars and other vehicles.
-</p>
-<p>
-    In June 2015, we were given a task that every software developer dreams of: throw away all the old stuff and rewrite everything from scratch. The “old stuff” being the public German home page of mobile.de, the main entry point to our platform.
-</p>
+<p>Hi, I'm Patrick, software engineer. My team and I work for <a href="http://www.mobile.de">mobile.de</a>, which is Germany's biggest online marketplace for cars and other vehicles.</p>
+<p>In June 2015, we were given a task that every software developer dreams of: throw away all the old stuff and rewrite everything from scratch. The “old stuff” being the home page of mobile.de, the main entry point to our platform.</p>
 
 <h3>mobile.de before&hellip;</h3>
 <p><a href="./data/mediapool/mobile.de-before-relaunch_825x710.png" target="_blank"><img src="./data/mediapool/mobile.de-before-relaunch_557x478.png" alt="mobile.de before the relaunch" width="557" height="478"></a></p>
@@ -50,7 +59,7 @@
 
 <h2>Why Node.js?</h2>
 
-<p>We have, traditionally, been a Java shop since we migrated from a big steaming pile of Perl back in 2007, but engineers at mobile.de are encouraged to explore new technologies and empowered to choose the best tool for the task at hand.</p>
+<p>We have traditionally been a Java shop since we migrated from a big steaming pile of Perl back in 2007. But engineers at mobile.de are encouraged to explore new technologies and empowered to choose the best tool for the task at hand and the given team setup.</p>
 
 <p>It was not hard to convince the Powers That Be<small><sup>TM</sup></small> that we should go for <a href="https://nodejs.org/">Node.js</a>, although it was still fairly new technology for us.</p>
 
@@ -62,13 +71,15 @@
 <p>We had a fairly tough deadline to meet, which is unusual for our company, but could not be avoided in this case. The new face of mobile.de needed to beam at the world on September 1st 2015, leaving us about 9 weeks.</p>
 <p>At the time we started, our team included four JavaScript experts (including myself) and two Java experts, one of whom was on vacation until well into the project. After some experimentation with PayPal's <a href="https://github.com/krakenjs/kraken-js">kraken.js</a> framework, I was confident that we could pull this off with much less deadline risk than using the “traditional” Spring/Java stack (more on why using Kraken turned out to be <em>not</em> such a great idea later).</p>
 
-<p>For further reading on why JavaScript is a good choice for backend and frontend alike, here is a link to a great article by Eric Elliot, <a href="https://medium.com/javascript-scene/how-to-build-a-high-velocity-development-team-4b2360d34021#40c2">How to Build a High Velocity Development Team</a>, section “Why Language Matters”.</p>
+<p>Main concerns of our management were system stability, scalability and monitoring. We took a lot of effort to make sure these requirements were met. More on this in another blog article by my team mate Jonathan Krause (coming soon).</p>
+
+<p>For further reading on why JavaScript is a good choice for backend and frontend alike, here is a link to a great article by Eric Elliott, <a href="https://medium.com/javascript-scene/how-to-build-a-high-velocity-development-team-4b2360d34021#40c2">How to Build a High Velocity Development Team</a>, section “Why Language Matters”.</p>
 
 <h2>Setting Up the Build System</h2>
 
 <h3>The Trouble With Kraken</h3>
 
-<img src="./data/mediapool/kraken-logo_136x136.svg" alt="Engineering Man vs. Deadline Dude" width="136" height="136" align="right">
+<img src="./data/mediapool/kraken-logo_136x136.svg" alt="kraken.js logo" width="136" height="136" align="right">
 
 <p>The first phase of our project was to set up the basic scaffold of the application, including a build system that allows us to smoothly and quickly work on the software running in our local development environments.</p>
 
@@ -143,8 +154,9 @@
     <li><strong>Part III</strong>: Lessons learned from building a Node.js application from scratch in 9 weeks</li>
 </ul>
 
+<p>My team mate <a href="https://twitter.com/jonykrause">Jonathan Krause</a> also wrote an excellent article about how we run our webapp in production (deployment, monitoring and logging): <a href="http://www.technology-ebay.de/the-teams/mobile-de/blog/nodejs-real-world">Node.js for the Real World</a></p>
+
 <p>If you want to make sure you don't miss an episode, feel free to <a href="http://twitter.com/wiekatz">follow me on Twitter</a> &#128522;</p>
-<p>Also look out for an upcoming article by my team mate <a href="https://twitter.com/jonykrause">Jonathan Krause</a> about how we run our webapp in production (deployment, monitoring and logging)</p>
 
 <h2>Acknowledgements</h2>
 
@@ -154,6 +166,7 @@
 
 <!-- ARTICLE END -->
 
+</article>
 <a name="bottom">&nbsp;</a>
 <script src="js/main.js"></script>
 </body>
