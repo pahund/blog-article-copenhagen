@@ -1,5 +1,12 @@
 /**
- * index.js
+ * test.js
+ *
+ * Run this test with:
+ *
+ * npm install
+ * npm test
+ *
+ * Prerequisite: Node.js >= 4.0.0
  *
  * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
  * @since 06 Nov 2015

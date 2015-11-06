@@ -1,6 +1,8 @@
 /**
  * programmer.js
  *
+ * Module under test.
+ *
  * @author <a href="mailto:pahund@team.mobile.de">Patrick Hund</a>
  * @since 06 Nov 2015
  */
