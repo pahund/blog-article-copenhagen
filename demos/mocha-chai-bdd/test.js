@@ -25,7 +25,7 @@ describe("When I hire a programmer", () => {
         before(() => codeQuality = programmer.getCodeQuality());
         it("is crappy", () => codeQuality.should.equal("crappy"));
     });
-    describe("and ask her to use test automation", () => {
+    describe("who to uses test automation", () => {
         before(() => programmer.useTestAutomation());
         describe("the code quality", () => {
             before(() => codeQuality = programmer.getCodeQuality());
