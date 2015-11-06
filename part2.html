@@ -40,8 +40,7 @@
     <!-- TEASER -->
     <h2>Part II: The Joy and Pain of Test Driven Development</h2>
 
-    <img src="./data/mediapool/from-the-trenches_709x255.png" alt="A thin layer" width="709" height="255" align="right">
-
+    <p><img src="./data/mediapool/from-the-trenches_709x255.png" alt="A thin layer" width="709" height="255"></p>
 
     <p>We created a Node.js web app from scratch within 9 weeks that now serves 10.81 million visitors each month*. We used the latest and greatest incarnation of JavaScript – ECMAScript 2015, a.k.a. ES6 – for the backend and frontend alike. We spent late nights coding in gleeful frenzy, stepped into pitfalls, moaned about WTFs, scaled the dizzy heights of asynchronicity. This is the second part of our story.</p>
 
@@ -79,7 +78,7 @@
 
     <h3>So What's Not to Like? What's the Pain?</h3>
 
-    <p>Well, on the mobile.de home page project, I spent more time writing tests and stubs and mocks and fixtures and what not than I spent writing the actual production code. It was maddening sometimes to write tests for things like asynchronous calls, promises, timeouts, etc. The urge to just let it slip and not write a test for some module was sometimes overwhelming, especially given the time constraints we had. I'm very proud to say that my team mates and I resisted the temptation.</p>
+    <p>Well, on the mobile.de home page project, I spent more time writing tests and stubs and mocks and fixtures and what not than I spent writing the actual production code. It was maddening sometimes to write tests for things like asynchronous calls, promises, timeouts, etc. The urge to just let it slip and not write a test for some module was sometimes overwhelming, especially given the time constraints we had. I'm very proud to say that my team mates and I resisted the temptation in most cases.</p>
 
     <h2>Tasty Mocha</h2>
 
@@ -143,12 +142,32 @@
     </p>
 
     <p>
-        For measuring the code coverage, we use Istanbul <!-- PH_TODO -->
+        For measuring the code coverage, we use <a href="https://github.com/gotwarlost/istanbul/">Istanbul</a>, the <a href="https://github.com/SBoudrias/gulp-istanbul">Istanbul plugin for Gulp</a> and <a href="https://github.com/douglasduteil/isparta/">Isparta</a>, which provides an instrumenter that makes it possible to measure code coverage on ES6 files that are transpiled through <a href="https://babeljs.io/">Babel</a> (we use Babel for both the backend and frontend).
     </p>
 
     <p>
-        Here's a peek at our actual production code, the Gulp task for running the backend JavaScript tests:
+        Instead of another sandbox example, let's take a peek at our actual production code, the Gulp task for running the backend JavaScript tests:
     </p>
+
+    <iframe src="http://pahund.github.io/blog-article-copenhagen/code-example-backend-mocha-gulp" frameBorder="0"  width="100%" height="830" scrolling="no" seamless></iframe>
+
+    <p>
+        Some things to note here:
+    </p>
+    <p>
+        Take a look at the comments at the beginning of the file: <a href="https://github.com/sindresorhus/gulp-mocha/issues/86">gulp-mocha</a> and <a href="https://github.com/douglasduteil/isparta/issues/45 ">Isparta</a> have bugs that force us to use some workarounds. In my experience, this is fairly typical when working with npm modules. You have to embrace the fact that software is never perfect and accept it. The good news about open source software is that you can fix these bugs yourself by creating a pull request, or at least contribute by reporting the bugs. You quickly find workarounds on GitHub or <a href="http://stackoverflow.com/">Stack Overflow</a>, or have to pick some other solution for your problem. I've gotten in the habit of putting links to these issues in my code's comments and then revisit once in a while to see if the problem was fixed with a new version of the module.</p>
+    </p>
+    <p>
+        The <em>istanbul.enforceThresholds</em> property makes the build fail when the code coverage drops below a specific percentage. We currently have this set to 84%. Since we have a <a href="https://github.com/dflourusso/pre-push">pre-push hook</a> that executes the tests before pushing to Git, this means you cannot push new code without proper unit tests. Needless to say, this can be annoying sometimes, but it helps a lot to keep our code clean. &#128522;
+    </p>
+    <p>
+        Another important configuration detail is <em>includeUntested: true</em> (towards the end of the code example). If you don't set this, Istanbul will only measure the coverage of modules that actually have an accompanying unit test. Modules that don't have any tests at all are not included in the coverage report. I only found out about this a few weeks ago. Up until then, I had often bragged to people: “Yeah, you know. We have 98% test coverage.” After turning this option on, I found out it was actually just 84%.
+    </p>
+    <p>
+        Here's a little video of our test build in action:
+    </p>
+
+    <p><iframe width="560" height="315" src="https://www.youtube.com/embed/w5OBYjd27hs" frameborder="0" allowfullscreen></iframe></p>
 
     <div class="placeholder">
         98% - yay! or is it?
