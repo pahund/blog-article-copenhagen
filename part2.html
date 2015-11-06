@@ -32,42 +32,61 @@
 
 <article>
 
-<!-- TITLE -->
+    <!-- TITLE -->
 
-<h1>Node.js and ES6 Instead of Java – A War Story (Part II)</h1>
-<p><small>by <a href="http://twitter.com/wiekatz">Patrick Hund</a></small></p>
+    <h1>Node.js and ES6 Instead of Java – A War Story</h1>
+    <p><small>by <a href="http://twitter.com/wiekatz">Patrick Hund</a></small></p>
 
-<!-- TEASER -->
+    <!-- TEASER -->
+    <h2>Part II: The Joy and Pain of Test Driven Development</h2>
+
+    <img src="./data/mediapool/from-the-trenches_709x255.png" alt="A thin layer" width="709" height="255" align="right">
 
 
-<!-- ARTICLE START -->
+    <p>We created a Node.js web app from scratch within 9 weeks that now serves 10.81 million visitors each month*. We used the latest and greatest incarnation of JavaScript – ECMAScript 2015, a.k.a. ES6 – for the backend and frontend alike. We spent late nights coding in gleeful frenzy, stepped into pitfalls, moaned about WTFs, scaled the dizzy heights of asynchronicity. This is the second part of our story.</p>
 
-<h2>Automated Tests</h2>
+    <p><small>* AGOF Digital Facts 2015-06</small></p>
 
-<div class="placeholder">
-    Robot
-    Mocha, Chai and Sinon
-    Problems
-    Freshy
-    Toboggan
-    Async
-    Architecture
-</div>
+    <p>If you missed part I, read up on it here on the <a href="http://www.technology-ebay.de/the-teams/mobile-de/blog/nodejs-es6-war-story">eBay Technology Blog Europe.</a></p>
 
-<h3>Test Coverage</h3>
+    <!-- ARTICLE START -->
 
-<div class="placeholder">
-    98% - yay!
-    pic
-</div>
+    <h2>What Joy? What Pain?</h2>
 
-<h3>Example: JS Unit Test With Mocha, Chai and Sinon</h3>
+    <p>Hi, I'm Patrick, software engineer. My team and I work for <a href="http://www.mobile.de">mobile.de</a>, which is Germany's biggest online marketplace for cars and other vehicles.</p>
 
-<div class="placeholder">
-    firstRegOptions-test.js
-</div>
+    <p>In the second part of my series, I'll focus on automated tests for the backend.</p>
 
-<!-- ARTICLE END -->
+    <p>When I started with the backend code for our new application, working with Node.js and the <a href="http://expressjs.com/">Express framework</a> was still mostly <i>terra incognita</i> for me. I had written a couple of Grunt tasks and an import script to fetch data from an API, but never a fully fledged webapp, at least not in JavaScript.</p>
+
+    <p>I had written web apps in Java back in the days before I moved from backend to frontend. Building on that experience and looking at the mess the old mobile.de home page web app had become over the years, one thing was crystal clear:</p>
+
+    <p><b>You cannot write maintainable code without proper unit test coverage.</b></p>
+
+    <div class="placeholder">
+        Robot
+        Mocha, Chai and Sinon
+        Problems
+        Freshy
+        Toboggan
+        Async
+        Architecture
+    </div>
+
+    <h3>Test Coverage</h3>
+
+    <div class="placeholder">
+        98% - yay!
+        pic
+    </div>
+
+    <h3>Example: JS Unit Test With Mocha, Chai and Sinon</h3>
+
+    <div class="placeholder">
+        firstRegOptions-test.js
+    </div>
+
+    <!-- ARTICLE END -->
 
 </article>
 <a name="bottom">&nbsp;</a>
