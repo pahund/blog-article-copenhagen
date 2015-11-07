@@ -24,8 +24,9 @@ import mocha from "gulp-mocha";
 
 /* isparta 3.1.0 has a bug that forces us to use require instead of import
  * https://github.com/douglasduteil/isparta/issues/45 */
-const conf = config.get(),
 isparta = require("isparta");
+
+const conf = config.get(),
 
 function showError(error) {
     const msg =
