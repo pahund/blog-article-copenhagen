@@ -1,6 +1,8 @@
 /**
  * test.js
  *
+ * Bad example: we're not really unit testing makes.js, we're also testing makes.json and config.js!
+ *
  * Run this test with:
  *
  * npm install
