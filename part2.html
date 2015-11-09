@@ -113,6 +113,13 @@
     </div>
 
     <h2>“It's a Trap!” – Writing Testable Code</h2>
+
+    <p>In contrast to Java classes, Node modules are singletons by nature, if you use them in multiple places, you always get the same instance of the module with the same scope.</p>
+
+    <p>When I got started coding the new mobile.de home home page's backend, I found this really convenient and elegant. “No need to write all that boilerplate code with class instantiation and what not like in Java,” I thought. Here's a (very simplified) example of a node module <em>makes.js</em> that provides a list of car or motorbikes makes, which can be used for populating a dropdown menu on a search form:</p>
+
+    <iframe src="http://pahund.github.io/blog-article-copenhagen/examples/axios-controller.html" frameBorder="0"  width="100%" height="490" scrolling="no" seamless></iframe>
+
     <div class="placeholder">
         example similar to tech talk 29, but not with timers
         architecture problem, nodejs singletons
