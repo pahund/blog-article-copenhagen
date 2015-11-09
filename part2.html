@@ -143,12 +143,21 @@
 
     <h3>“It's a Trap!”</h3>
 
-    <p>What would <a href="https://www.youtube.com/watch?v=4F4qzPbcFiA">Admiral Ackbar</a> do? Certainly not what I did at this point. I stepped into the trap of refactoring my test code around a system under test that was hard to test because of my poor architecture choice.</p>
+    <p>What would <a href="https://www.youtube.com/watch?v=4F4qzPbcFiA">Admiral Ackbar</a> do? Certainly not what I did at this point. I stepped into the trap of refactoring my test code around a system that was hard to test because of my poor architecture choice.</p>
 
-    <p>Here's a <em>slightly less crappy</em> version of <a href="">makes.js</a>:</p>
+    <p>Here's a <em>slightly less crappy</em> version of <a href="https://github.com/pahund/blog-article-copenhagen/tree/master/demos/testable-code-slc-example/makes.js">makes.js</a>:</p>
 
-    <iframe src="http://pahund.github.io/blog-article-copenhagen/examples/unit-test-slc-makes.html" frameBorder="0"  width="100%" height="300" scrolling="no" seamless></iframe>
+    <iframe src="http://pahund.github.io/blog-article-copenhagen/examples/unit-test-slc-makes.html" frameBorder="0"  width="100%" height="185" scrolling="no" seamless></iframe>
 
+    <p>The only difference to the previous version is that the <a href="https://github.com/pahund/blog-article-copenhagen/tree/master/demos/testable-code-slc-example/config.js">config module</a> now has a method <em>getPath</em> that gives us the path to the JSON file with the data. Using a method instead of a property allows us to mock the config module using <a href="http://sinonjs.org/">Sinon.JS</a>.</p>
+
+    <p>There's only one problem: we still can't slip the mock to the makes module, because it is instantiated the instant it is loaded.</p>
+
+    <p>To work around this, I used a small library named <a href="https://github.com/totherik/freshy">freshy</a>. <em>freshy</em> allows us to load a fresh instance of a module whenever we want, without getting the same instance over and over again from the npm cache. This way, we can load our makes module <strong>after</strong> the config mock has been created.</p>
+
+    <p>The <a href="https://github.com/pahund/blog-article-copenhagen/tree/master/demos/testable-code-slc-example/test.js">slightly less crappy test</a> looks like this:</p>
+
+    <iframe src="http://pahund.github.io/blog-article-copenhagen/examples/unit-test-slc-test.html" frameBorder="0"  width="100%" height="185" scrolling="no" seamless></iframe>
 
     <h2>Problems</h2>
 
@@ -198,12 +207,6 @@
     </p>
 
     <p><iframe width="560" height="315" src="https://www.youtube.com/embed/w5OBYjd27hs" frameborder="0" allowfullscreen></iframe></p>
-
-    <h3>Example: JS Unit Test With Mocha, Chai and Sinon</h3>
-
-    <div class="placeholder">
-        firstRegOptions-test.js
-    </div>
 
     <!-- ARTICLE END -->
 
