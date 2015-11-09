@@ -135,7 +135,7 @@
 
     <p><img src="./data/mediapool/unit-test-bad-output_280x155.png" alt="A thin layer" width="280" height="155"></p>
 
-    <p>What's wrong with this? It is not really a unit test. We are not only testing <em>makes.js</em>, we're also testing <em>config.js</em> and even <em>makes.json</em>. If <em>makes.json</em> is updated, it might break the test for <em>makes.js</em>. We only want the test to break if something in <em>makes.js</em> is changed, not some JSON file we don't care about.</p>
+    <p>What's wrong with this? <strong>It is not really a unit test!</strong> We are not only testing <em>makes.js</em>, we're also testing <em>config.js</em> and even <em>makes.json</em>. If <em>makes.json</em> is updated, it might break the test for <em>makes.js</em>. We only want the test to break if something in <em>makes.js</em> is changed, not some JSON file we don't care about.</p>
 
     <p>OK, so let's just create a mock for <em>config.js</em> in the <em>before</em> method and let that mock return the URL of a mockup JSON file with bespoke test data.</p>
 
@@ -157,7 +157,15 @@
 
     <p>The <a href="https://github.com/pahund/blog-article-copenhagen/tree/master/demos/testable-code-slc-example/test.js">slightly less crappy test</a> looks like this:</p>
 
-    <iframe src="http://pahund.github.io/blog-article-copenhagen/examples/unit-test-slc-test.html" frameBorder="0"  width="100%" height="185" scrolling="no" seamless></iframe>
+    <iframe src="http://pahund.github.io/blog-article-copenhagen/examples/unit-test-slc-test.html" frameBorder="0"  width="100%" height="395" scrolling="no" seamless></iframe>
+
+    <p>I'm mocking config before instantiating the makes module with freshy, it works – I was satisfied, and wrote many, many tests like this.</p>
+
+    <h2>The Horror, the Horror</h2>
+
+    <p>It turned out that outsmarting the npm cache was not such a great idea, especially when writing tests for asynchronous operations in this manner. It worked fine when running the tests locally, but when running them as part of our distribution build on Jenkins CI, we soon experienced builds that we're hanging and tests that failed with timeouts. It got so bad that at some point we were forced to actually disable our test suites to be able to deploy changes to production, without having to retrigger the build multiple times until it finally finished with green tests.</p>
+
+
 
     <h2>Problems</h2>
 
