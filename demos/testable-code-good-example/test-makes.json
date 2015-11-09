@@ -1,0 +1,26 @@
+{
+  "cars": [
+    {
+      "name": "CarMake1",
+      "id": 1
+    },
+    {
+      "name": "CarMake2",
+      "id": 2
+    },
+    {
+      "name": "CarMake3",
+      "id": 3
+    }
+  ],
+  "motorbikes": [
+    {
+      "name": "MotorbikeMake1",
+      "id": 1
+    },
+    {
+      "name": "MotorbikeMake2",
+      "id": 2
+    }
+  ]
+}
