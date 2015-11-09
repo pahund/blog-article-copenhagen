@@ -116,14 +116,15 @@
 
     <p>In contrast to Java classes, Node modules are singletons by nature, if you use them in multiple places, you always get the same instance of the module with the same scope.</p>
 
-    <p>When I got started coding the new mobile.de home home page's backend, I found this really convenient and elegant. “No need to write all that boilerplate code with class instantiation and what not like in Java,” I thought. Here's a (very simplified) example of a node module <em>makes.js</em> that provides a list of car or motorbikes makes, which can be used for populating a dropdown menu on a search form:</p>
+    <p>When I got started coding the new mobile.de home home page's backend, I found this really convenient and elegant. “No need to write all that boilerplate code with class instantiation and what not like in Java,” I thought. Here's a (very simplified) example of a node module <a href="https://github.com/pahund/blog-article-copenhagen/tree/master/demos/testable-code-bad-example/makes.js">makes.js</a> that provides a list of car or motorbikes makes, which can be used for populating a dropdown menu on a search form:</p>
 
-    <iframe src="http://pahund.github.io/blog-article-copenhagen/examples/axios-controller.html" frameBorder="0"  width="100%" height="490" scrolling="no" seamless></iframe>
+    <iframe src="http://pahund.github.io/blog-article-copenhagen/examples/unit-test-bad-makes.html" frameBorder="0"  width="100%" height="190" scrolling="no" seamless></iframe>
 
-    <div class="placeholder">
-        example similar to tech talk 29, but not with timers
-        architecture problem, nodejs singletons
-    </div>
+    <p>The module imports a configuration module <em>config.js</em>, gets a path to a local JSON file with make data, imports this with require and exposes a get method that accepts a segment ("car" or "motorbike") for getting a list of makes.</p>
+
+    <p>The config module <a href="https://github.com/pahund/blog-article-copenhagen/tree/master/demos/testable-code-bad-example/config.js">config.js</a> looks like this:</p>
+
+
 
     <h2>Problems</h2>
 
