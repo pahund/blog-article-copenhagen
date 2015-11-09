@@ -112,11 +112,60 @@
         Robot
     </div>
 
-    <h2>“It's a Trap!” – Writing Testable Code</h2>
-    <div class="placeholder">
-        example similar to tech talk 29, but not with timers
-        architecture problem, nodejs singletons
-    </div>
+    <h2>Writing Testable Code</h2>
+
+    <p>In contrast to Java classes, Node modules are singletons by nature, if you use them in multiple places, you always get the same instance of the module with the same scope.</p>
+
+    <p>When I got started coding the new mobile.de home home page's backend, I found this really convenient and elegant. “No need to write all that boilerplate code with class instantiation and what not like in Java,” I thought.</p>
+    <p>Here's a (very simplified) example of a node module <a href="https://github.com/pahund/blog-article-copenhagen/tree/master/demos/testable-code-bad-example/makes.js">makes.js</a> that provides a list of car or motorbikes makes, which can be used for populating a dropdown menu on a search form:</p>
+
+    <iframe src="http://pahund.github.io/blog-article-copenhagen/examples/unit-test-bad-makes.html" frameBorder="0"  width="100%" height="190" scrolling="no" seamless></iframe>
+
+    <p>The module imports a configuration module <em>config.js</em>, gets a path to a <a href="https://github.com/pahund/blog-article-copenhagen/tree/master/demos/testable-code-bad-example/makes.json">local JSON file with make data</a>, imports this with require and exposes a get method that accepts a segment (“car” or “motorbike”) for getting a list of makes.</p>
+
+    <p>The config module <a href="https://github.com/pahund/blog-article-copenhagen/tree/master/demos/testable-code-bad-example/config.js">config.js</a> looks like this:</p>
+
+    <iframe src="http://pahund.github.io/blog-article-copenhagen/examples/unit-test-bad-config.html" frameBorder="0"  width="100%" height="95" scrolling="no" seamless></iframe>
+
+    <p>And, finally, this is the Mocha test suite <a href="https://github.com/pahund/blog-article-copenhagen/tree/master/demos/testable-code-bad-example/test.js">test.js</a>:</p>
+
+    <iframe src="http://pahund.github.io/blog-article-copenhagen/examples/unit-test-bad-test.html" frameBorder="0"  width="100%" height="300" scrolling="no" seamless></iframe>
+
+    <p>Running <em>npm test</em> on the console gives us this output:</p>
+
+    <p><img src="./data/mediapool/unit-test-bad-output_280x155.png" alt="A thin layer" width="280" height="155"></p>
+
+    <p>What's wrong with this? <strong>It is not really a unit test!</strong> We are not only testing <em>makes.js</em>, we're also testing <em>config.js</em> and even <em>makes.json</em>. If <em>makes.json</em> is updated, it might break the test for <em>makes.js</em>. We only want the test to break if something in <em>makes.js</em> is changed, not some JSON file we don't care about.</p>
+
+    <p>OK, so let's just create a mock for <em>config.js</em> in the <em>before</em> method and let that mock return the URL of a mockup JSON file with bespoke test data.</p>
+
+    <p>But wait, how can I mock the config module? It is in the scope of the makes module the instant it is imported. The fact that the makes module is a singleton, as mentioned earlier, makes it quite hard to slip our testing fingers inside the module and switch the config to a mock.</p>
+
+    <h3>“It's a Trap!”</h3>
+
+    <p>What would <a href="https://www.youtube.com/watch?v=4F4qzPbcFiA">Admiral Ackbar</a> do? Certainly not what I did at this point. I stepped into the trap of refactoring my test code around a system that was hard to test because of my poor architecture choice.</p>
+
+    <p>Here's a <em>slightly less crappy</em> version of <a href="https://github.com/pahund/blog-article-copenhagen/tree/master/demos/testable-code-slc-example/makes.js">makes.js</a>:</p>
+
+    <iframe src="http://pahund.github.io/blog-article-copenhagen/examples/unit-test-slc-makes.html" frameBorder="0"  width="100%" height="185" scrolling="no" seamless></iframe>
+
+    <p>The only difference to the previous version is that the <a href="https://github.com/pahund/blog-article-copenhagen/tree/master/demos/testable-code-slc-example/config.js">config module</a> now has a method <em>getPath</em> that gives us the path to the JSON file with the data. Using a method instead of a property allows us to mock the config module using <a href="http://sinonjs.org/">Sinon.JS</a>.</p>
+
+    <p>There's only one problem: we still can't slip the mock to the makes module, because it is instantiated the instant it is loaded.</p>
+
+    <p>To work around this, I used a small library named <a href="https://github.com/totherik/freshy">freshy</a>. <em>freshy</em> allows us to load a fresh instance of a module whenever we want, without getting the same instance over and over again from the npm cache. This way, we can load our makes module <strong>after</strong> the config mock has been created.</p>
+
+    <p>The <a href="https://github.com/pahund/blog-article-copenhagen/tree/master/demos/testable-code-slc-example/test.js">slightly less crappy test</a> looks like this:</p>
+
+    <iframe src="http://pahund.github.io/blog-article-copenhagen/examples/unit-test-slc-test.html" frameBorder="0"  width="100%" height="395" scrolling="no" seamless></iframe>
+
+    <p>I'm mocking config before instantiating the makes module with freshy, it works – I was satisfied, and wrote many, many tests like this.</p>
+
+    <h2>The Horror, the Horror</h2>
+
+    <p>It turned out that outsmarting the npm cache was not such a great idea, especially when writing tests for asynchronous operations in this manner. It worked fine when running the tests locally, but when running them as part of our distribution build on Jenkins CI, we soon experienced builds that we're hanging and tests that failed with timeouts. It got so bad that at some point we were forced to actually disable our test suites to be able to deploy changes to production, without having to retrigger the build multiple times until it finally finished with green tests.</p>
+
+
 
     <h2>Problems</h2>
 
@@ -166,12 +215,6 @@
     </p>
 
     <p><iframe width="560" height="315" src="https://www.youtube.com/embed/w5OBYjd27hs" frameborder="0" allowfullscreen></iframe></p>
-
-    <h3>Example: JS Unit Test With Mocha, Chai and Sinon</h3>
-
-    <div class="placeholder">
-        firstRegOptions-test.js
-    </div>
 
     <!-- ARTICLE END -->
 

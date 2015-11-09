@@ -25,8 +25,7 @@ describe("When I use the makes module", () => {
     describe("to get car makes", () => {
         before(() => {
             sinon.stub(config, "getPath").returns("./test-makes.json");
-            const makes = freshy.freshy("./makes");
-            result = makes.get("cars");
+            result = freshy.freshy("./makes").get("cars");
         });
         describe("the result", () => {
             it("is a list of car makes", () => {
