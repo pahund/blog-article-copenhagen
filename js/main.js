@@ -41,7 +41,9 @@
 
         window[callbackName] = function (data) {
             window.clearTimeout(timeoutTrigger);
-            document.getElementsByTagName("head")[0].removeChild(script);
+            try {
+                document.getElementsByTagName("head")[0].removeChild(script);
+            } catch (e) {}
             onSuccess(data);
         };
 
