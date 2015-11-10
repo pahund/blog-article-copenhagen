@@ -57,7 +57,6 @@ function log(message) {
 
 watch.createMonitor(process.cwd(), monitor => monitor.on("changed", handleChange));
 
-// Configure our HTTP server to respond with Hello World to all requests.
 const server = http.createServer((request, response) => {
     const referrer = request.headers.referer;
     if (!referrer) {

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Blog Article Copenhagen</title>
+        <meta name="description" content="Blog Article Copenhagen">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/styles/default.min.css">
+        <link rel="stylesheet" href="../css/code-example.css">
+    </head>
+    <body>
+        <pre><code class="javascript">import config from "./config";
+
+let data = null;
+
+function init() {
+    data = require(config.getPath());
+}
+
+function get(segment) {
+    return data ? data[segment] : null;
+}
+
+export default {
+    init,
+    get
+};</code></pre>
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+    </body>
+</html>
