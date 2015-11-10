@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Blog Article Copenhagen</title>
+        <meta name="description" content="Blog Article Copenhagen">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/styles/default.min.css">
+        <link rel="stylesheet" href="../css/code-example.css">
+    </head>
+    <body>
+        <pre><code class="javascript">import chai from "chai";
+import sinon from "sinon";
+import config from "./config";
+import makes from "./makes";
+
+chai.should();
+
+let result = null;
+
+describe("When I use the makes module", () => {
+    describe("to get car makes", () => {
+        before(() => {
+            sinon.stub(config, "getPath").returns("./test-makes.json");
+            makes.init();
+            result = makes.get("cars");
+        });
+        describe("the result", () => {
+            it("is a list of car makes", () => {
+                result[0].name.should.equal("CarMake1");
+                result[1].name.should.equal("CarMake2");
+                result[2].name.should.equal("CarMake3");
+            });
+        });
+        after(() => config.getPath.restore());
+    });
+});</code></pre>
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+    </body>
+</html>

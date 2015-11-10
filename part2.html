@@ -40,7 +40,7 @@
     <!-- TEASER -->
     <h2>Part II: The Joy and Pain of Test Driven Development</h2>
 
-    <p><img src="./data/mediapool/from-the-trenches_709x255.png" alt="A thin layer" width="709" height="255"></p>
+    <p><img src="./data/mediapool/from-the-trenches_709x255.png" alt="From the trenches" width="709" height="255"></p>
 
     <p>We created a Node.js web app from scratch within 9 weeks that now serves 10.81 million visitors each month*. We used the latest and greatest incarnation of JavaScript – ECMAScript 2015, a.k.a. ES6 – for the backend and frontend alike. We spent late nights coding in gleeful frenzy, stepped into pitfalls, moaned about WTFs, scaled the dizzy heights of asynchronicity. This is the second part of our story.</p>
 
@@ -97,14 +97,14 @@
         Mocha's syntax is very similar to Jasmine's. You formulate your test cases as a series of nested <em>describe</em> function calls with an <em>it</em> function call containing your assertion:
     </p>
 
-    <iframe src="http://pahund.github.io/blog-article-copenhagen/examples/mocha-chai-bdd" frameBorder="0"  width="100%" height="240" scrolling="no" seamless></iframe>
+    <iframe src="http://pahund.github.io/blog-article-copenhagen/examples/mocha-chai-bdd" frameBorder="0"  width="100%" height="220" scrolling="no" seamless></iframe>
 
     <p>Using the assertion library <a href="chaijs.com">Chai</a>, you can write nice readable test code in the style of <a href="https://en.wikipedia.org/wiki/Behavior-driven_development">behavior-driven development</a> (BDD): <em>codeQuality.should.equal("awesome")</em></p>
     <p>
         The console output of this little example looks like this:
     </p>
 
-    <p><img src="./data/mediapool/example-mocha-chai-bdd-output_300x216.png" alt="A thin layer" width="300" height="216"></p>
+    <p><img src="./data/mediapool/example-mocha-chai-bdd-output_300x216.png" alt="Mocha test output" width="300" height="216"></p>
     <p><small><a href="https://github.com/pahund/blog-article-copenhagen/tree/master/demos/mocha-chai-bdd">(full code example available on GitHub)</a></small></p>
 
     <div class="placeholder">
@@ -133,7 +133,7 @@
 
     <p>Running <em>npm test</em> on the console gives us this output:</p>
 
-    <p><img src="./data/mediapool/unit-test-bad-output_280x155.png" alt="A thin layer" width="280" height="155"></p>
+    <p><img src="./data/mediapool/unit-test-bad-output_280x155.png" alt="Test output" width="280" height="155"></p>
 
     <p>What's wrong with this? <strong>It is not really a unit test!</strong> We are not only testing <em>makes.js</em>, we're also testing <em>config.js</em> and even <em>makes.json</em>. If <em>makes.json</em> is updated, it might break the test for <em>makes.js</em>. We only want the test to break if something in <em>makes.js</em> is changed, not some JSON file we don't care about.</p>
 
@@ -161,28 +161,24 @@
 
     <p>I'm mocking config before instantiating the makes module with freshy, it works – I was satisfied, and wrote many, many tests like this.</p>
 
-    <h2>The Horror, the Horror</h2>
+    <h3>The Horror, the Horror</h3>
 
     <p>It turned out that outsmarting the npm cache was not such a great idea, especially when writing tests for asynchronous operations in this manner. It worked fine when running the tests locally, but when running them as part of our distribution build on Jenkins CI, we soon experienced builds that we're hanging and tests that failed with timeouts. It got so bad that at some point we were forced to actually disable our test suites to be able to deploy changes to production, without having to retrigger the build multiple times until it finally finished with green tests.</p>
 
+    <h3>A Better Way</h3>
+
+    <p>The hard learned lesson here is:</p>
+
+    <p><img src="./data/mediapool/cross-stitch-testable_700x426.png" alt="Write testable code" width="700" height="426"></p>
+
+    <p>We eventually refactored a lot of our modules to not be instantly available singletons, but provide an init method that instantiates the module.</p>
+
+    <p>A revised version of the above example looks like this:</p>
+
+    <iframe src="http://pahund.github.io/blog-article-copenhagen/examples/unit-test-good-makes.html" frameBorder="0"  width="100%" height="395" scrolling="no" seamless></iframe>
 
 
-    <h2>Problems</h2>
-
-    <div class="placeholder">
-        Freshy
-        Toboggan
-        Async
-        Architecture
-    </div>
-
-    <h2>The Horror, the Horror</h2>
-    <div class="placeholder">
-        take extra good care to clean up your fixtures
-        had to disable the whole test suite one day before launch to be able to build on CI system
-    </div>
-
-    <h3>Test Coverage</h3>
+    <h2>Measuring Test Coverage</h2>
 
     <p>
         To run the Mocha test suites and measure the code coverage, we use our build system, which is based on <a href="https://docs.npmjs.com/cli/run-script">npm script runners</a> that trigger various <a href="http://gulpjs.com/">Gulp</a> tasks. The tests are run with <em>npm test</em> or as part of the distribution package build that is run with <em>npm run dist</em>.
@@ -215,6 +211,16 @@
     </p>
 
     <p><iframe width="560" height="315" src="https://www.youtube.com/embed/w5OBYjd27hs" frameborder="0" allowfullscreen></iframe></p>
+
+    <div class="placeholder">
+        end section / summary / coming up next
+    </div>
+
+    <h2>Acknowledgements</h2>
+
+    <ul>
+        <li>Cross-stitch image made with <a href="https://photofunia.com/">Photofunia</a></li>
+    </ul>
 
     <!-- ARTICLE END -->
 
