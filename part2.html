@@ -103,11 +103,6 @@
     <p><img src="./data/mediapool/example-mocha-chai-bdd-output_300x216.png" alt="Mocha test output" width="300" height="216"></p>
     <p><small><a href="https://github.com/pahund/blog-article-copenhagen/tree/master/demos/mocha-chai-bdd">(full code example available on GitHub)</a></small></p>
 
-    <div class="placeholder">
-        Wallaby
-        Robot
-    </div>
-
     <h2>Writing Testable Code</h2>
 
     <p>In contrast to Java classes, Node modules are singletons by nature, if you use them in multiple places, you always get the same instance of the module with the same scope.</p>
@@ -134,6 +129,8 @@
     <p>What's wrong with this? <strong>It is not really a unit test!</strong> We are not only testing <em>makes.js</em>, we're also testing <em>config.js</em> and even <em>makes.json</em>. If <em>makes.json</em> is updated, it might break the test for <em>makes.js</em>. We only want the test to break if something in <em>makes.js</em> is changed, not some JSON file we don't care about.</p>
 
     <p>OK, so let's just create a mock for <em>config.js</em> in the <em>before</em> method and let that mock return the URL of a mockup JSON file with bespoke test data.</p>
+
+    <img src="./data/mediapool/admiral-ackbar_250x334.png" alt="Admiral Ackbar" width="250" height="334" align="right">
 
     <p>But wait, how can I mock the config module? It is in the scope of the makes module the instant it is imported. The fact that the makes module is a singleton, as mentioned earlier, makes it quite hard to slip our testing fingers inside the module and switch the config to a mock.</p>
 
@@ -235,6 +232,7 @@
 
     <ul>
         <li><a href="https://www.flickr.com/photos/vancouver-bites/5338971863">Vanilla Mocha</a> courtesy of Brown Dog Cafe in Vancouver BC</li>
+        <li><a href="https://commons.wikimedia.org/wiki/File:SWCA_-_Admiral_Ackbar_%2816995474137%29.jpg">Admiral Ackbar</a> photograph by <a href="https://www.flickr.com/people/28277470@N05">William Tung</a> (Star Wars Celebration in Anaheim, April 2015)</li>
         <li>Cross-stitch image made with <a href="https://photofunia.com/">Photofunia</a></li>
     </ul>
 
