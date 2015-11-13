@@ -66,7 +66,7 @@
 
     <p>There's a German saying for this: “Mit dem Arsch einreißen was man mit den Händen aufgebaut hat.” (tearing down with your ass what you've built up with your hands)</p>
 
-    <p><img src="./data/mediapool/building-up-tearing-down_500x400.png" alt="From the trenches" width="500" height="400"></p>
+    <p><img src="./data/mediapool/building-up-tearing-down_500x400.png" alt="Tearing down with your ass what you've built up with your hands" width="500" height="400"></p>
 
     <p>Automated tests are the only way I know of to obviate this phenomenon.</p>
 
@@ -78,12 +78,10 @@
 
     <p>Well, on the mobile.de home page project, I spent more time writing tests and stubs and mocks and fixtures and what not than I spent writing the actual production code. It was maddening sometimes to write tests for things like asynchronous calls, promises, timeouts, etc. The urge to just let it slip and not write a test for some module was sometimes overwhelming, especially given the time constraints we had. I'm very proud to say that my team mates and I resisted the temptation in most cases.</p>
 
+    <img src="./data/mediapool/tasty-mocha_270x220.png" alt="Tasty Mocha" width="270" height="220" align="right">
+
     <h2>Tasty Mocha</h2>
 
-    <div class="placeholder">
-        mocha, sinon, chai logos
-        picture of mocha cup in blog folder
-    </div>
 
     <p>
         I had previously worked with <a href="http://jasmine.github.io/">Jasmine</a>, which is great for testing frontend JavaScript code, especially if you use jQuery, since there is a great lib <a href="https://github.com/velesin/jasmine-jquery">jasmine-jquery</a> that allows you to create HTML fixtures to test jQuery DOM interaction easily.
@@ -104,11 +102,6 @@
 
     <p><img src="./data/mediapool/example-mocha-chai-bdd-output_300x216.png" alt="Mocha test output" width="300" height="216"></p>
     <p><small><a href="https://github.com/pahund/blog-article-copenhagen/tree/master/demos/mocha-chai-bdd">(full code example available on GitHub)</a></small></p>
-
-    <div class="placeholder">
-        Wallaby
-        Robot
-    </div>
 
     <h2>Writing Testable Code</h2>
 
@@ -136,6 +129,8 @@
     <p>What's wrong with this? <strong>It is not really a unit test!</strong> We are not only testing <em>makes.js</em>, we're also testing <em>config.js</em> and even <em>makes.json</em>. If <em>makes.json</em> is updated, it might break the test for <em>makes.js</em>. We only want the test to break if something in <em>makes.js</em> is changed, not some JSON file we don't care about.</p>
 
     <p>OK, so let's just create a mock for <em>config.js</em> in the <em>before</em> method and let that mock return the URL of a mockup JSON file with bespoke test data.</p>
+
+    <img src="./data/mediapool/admiral-ackbar_250x334.png" alt="Admiral Ackbar" width="250" height="334" align="right">
 
     <p>But wait, how can I mock the config module? It is in the scope of the makes module the instant it is imported. The fact that the makes module is a singleton, as mentioned earlier, makes it quite hard to slip our testing fingers inside the module and switch the config to a mock.</p>
 
@@ -215,7 +210,7 @@
 
     <p><iframe width="560" height="315" src="https://www.youtube.com/embed/w5OBYjd27hs" frameborder="0" allowfullscreen></iframe></p>
 
-    <h3>To Be Continued&hellip;</h3>
+    <h2>To Be Continued&hellip;</h2>
 
     <p>This concludes part II of my series “Node.js and ES6 Instead of Java – A War Story”. I hope you found it useful.</p>
 
@@ -236,6 +231,8 @@
     <h2>Acknowledgements</h2>
 
     <ul>
+        <li><a href="https://www.flickr.com/photos/vancouver-bites/5338971863">Vanilla Mocha</a> courtesy of Brown Dog Cafe in Vancouver BC</li>
+        <li><a href="https://commons.wikimedia.org/wiki/File:SWCA_-_Admiral_Ackbar_%2816995474137%29.jpg">Admiral Ackbar</a> photograph by <a href="https://www.flickr.com/people/28277470@N05">William Tung</a> (Star Wars Celebration in Anaheim, April 2015)</li>
         <li>Cross-stitch image made with <a href="https://photofunia.com/">Photofunia</a></li>
     </ul>
 
