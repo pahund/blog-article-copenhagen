@@ -56,23 +56,23 @@
 
     <p>In the second part of my series, I'll focus on automated tests for the backend.</p>
 
-    <p>When I started with the backend code for our new application, working with Node.js and the <a href="http://expressjs.com/">Express framework</a> was still mostly <em>terra incognita</em> for me. I had written a couple of Grunt tasks and an import script to fetch data from an API, but never a fully fledged webapp, at least not in JavaScript.</p>
+    <p>When I started with the backend code for our new application, working with <a href="https://nodejs.org/">Node.js</a> and the <a href="http://expressjs.com/">Express framework</a> was still mostly <em>terra incognita</em> for me. I had written a couple of Grunt tasks and an import script to fetch data from an API, but never a fully fledged webapp, at least not in JavaScript.</p>
 
     <p>I had written web apps in Java back in the days before I moved from backend to frontend. Building on that experience and looking at the mess the old mobile.de home page web app had become over the years, one thing was crystal clear:</p>
 
-    <p><b>You cannot write maintainable code without proper unit test coverage.</b></p>
+    <p><strong>You cannot write maintainable code without proper unit test coverage.</strong></p>
 
     <p>If you have proper test coverage, you can easily refactor your code without having to fear to break something without being aware of it. This has happened to me countless times. I'll make a wild guess and assume it has happened to you, too. &#128522;</p>
+
+    <p>There's a German saying for this: “Mit dem Arsch einreißen was man mit den Händen aufgebaut hat.” (tearing down with your ass what you've built up with your hands)</p>
 
     <div class="placeholder">
         cartoon
     </div>
 
-    <p>There's a German saying for this: “Mit dem Arsch einreißen was man mit den Händen aufgebaut hat.” (tearing down with your ass what you've built up with your hands)</p>
-
     <p>Automated tests are the only way I know of to obviate this phenomenon.</p>
 
-    <p>The safety net of good test coverage is even more important in JavaScript than in Java, as JavaScript lacks typ safety, something I'm starting more and more to resent (yeah, I know, there's <a href="http://www.typescriptlang.org/">TypeScript</a>, I haven't gotten around to trying that yet).</p>
+    <p>The safety net of good test coverage is even more important in JavaScript than in Java, as JavaScript lacks type safety, something I'm starting more and more to resent (yeah, I know, there's <a href="http://www.typescriptlang.org/">TypeScript</a>, I haven't gotten around to trying that yet).</p>
 
     <p>With a good test setup that runs your tests automatically as you write your code, you can concentrate intensely on solving the problem at hand, without being distracted by things like reloading the page in the browser or restarting the server. You can deep dive <a href="http://psygrammer.com/2011/02/10/the-flow-programming-in-ecstasy/">into the zone</a>. To me, this is joy indeed.</p>
 
@@ -116,7 +116,7 @@
 
     <p>In contrast to Java classes, Node modules are singletons by nature, if you use them in multiple places, you always get the same instance of the module with the same scope.</p>
 
-    <p>When I got started coding the new mobile.de home home page's backend, I found this really convenient and elegant. “No need to write all that boilerplate code with class instantiation and what not like in Java,” I thought.</p>
+    <p>When I got started coding the new mobile.de home page's backend, I found this really convenient and elegant. “No need to write all that boilerplate code with class instantiation and what not like in Java,” I thought.</p>
     <p>Here's a (very simplified) example of a node module <a href="https://github.com/pahund/blog-article-copenhagen/tree/master/demos/testable-code-bad-example/makes.js">makes.js</a> that provides a list of car or motorbikes makes, which can be used for populating a dropdown menu on a search form:</p>
 
     <iframe src="http://pahund.github.io/blog-article-copenhagen/examples/unit-test-bad-makes.html" frameBorder="0"  width="100%" height="190" scrolling="no" seamless></iframe>
@@ -163,7 +163,7 @@
 
     <h3>The Horror, the Horror</h3>
 
-    <p>It turned out that outsmarting the npm cache was not such a great idea, especially when writing tests for asynchronous operations in this manner. It worked fine when running the tests locally, but when running them as part of our distribution build on Jenkins CI, we soon experienced builds that we're hanging and tests that failed with timeouts. It got so bad that at some point we were forced to actually disable our test suites to be able to deploy changes to production, without having to retrigger the build multiple times until it finally finished with green tests.</p>
+    <p>It turned out that outsmarting the npm cache was not such a great idea, especially when writing tests for asynchronous operations in this manner. It worked fine when running the tests locally, but when running them as part of our distribution build on Jenkins CI, we soon experienced builds that were hanging and tests that failed with timeouts. It got so bad that at some point we were forced to actually disable our test suites to be able to deploy changes to production, without having to retrigger the build multiple times until it finally finished with green tests.</p>
 
     <h3>A Better Way</h3>
 
@@ -225,7 +225,7 @@
 
     <ul>
         <li>Practical application of ES6 features and working with <a href="https://babeljs.io/">Babel</a></li>
-        <li>working with <a href="http://www.dustjs.com/">Dust</a> templates and using helpers</li>
+        <li>Working with <a href="http://www.dustjs.com/">Dust</a> templates and using helpers</li>
         <li>MVC architecture with <a href="http://expressjs.com/">Express</a></li>
     </ul>
 
